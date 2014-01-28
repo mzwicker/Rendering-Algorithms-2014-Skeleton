@@ -13,13 +13,7 @@ public class Main {
 	static LinkedList<RenderTask> queue;
 	static Counter tasksLeft;
 	
-	static Camera camera;
-	static Film film;
-	static Intersectable objects;
-	static LightList lights;
-	static EnvironmentMap envMap;
-	static IntegratorFactory integratorFactory;
-	static SamplerFactory samplerFactory;
+	static Scene scene;
 	
 	static public class Counter
 	{
@@ -44,8 +38,10 @@ public class Main {
 			this.bottom = bottom;
 			this.top = top;
 			
-			integrator = integratorFactory.make(objects, lights, envMap);
-			pixelSampler = samplerFactory.make(2);
+//			integrator = integratorFactory.make(objects, lights, envMap);
+//			pixelSampler = samplerFactory.make(2);
+			integrator = scene.makeIntegrator();
+			pixelSampler = scene.makeSampler(2);
 			pixelSampler.makeSamples();
 		}
 	}
@@ -67,7 +63,7 @@ public class Main {
 				{
 					for(int i=task.left; i<task.right; i++)
 					{
-						task.integrator.prepareSamples(samplerFactory.getNumberOfSamples());
+						task.integrator.prepareSamples(task.pixelSampler.getNrOfSamples());
 						
 						Iterator<float[]> pixelItr = task.pixelSampler.getIterator();						
 						while(pixelItr.hasNext())
@@ -75,10 +71,10 @@ public class Main {
 							float[] pixelSample = pixelItr.next();
 							float x = pixelSample[0]+(float)i;
 							float y = pixelSample[1]+(float)j;									
-							Ray r = camera.makeWorldSpaceRay(x, y);
+							Ray r = scene.getCamera().makeWorldSpaceRay(x, y);
 						
 							Spectrum s = task.integrator.integrate(r);
-							film.addSample(x, y, s);							
+							scene.getFilm().addSample(x, y, s);							
 						}
 					}
 				}

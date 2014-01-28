@@ -6,5 +6,5 @@ public interface Sampler {
 
 	public void makeSamples();
 	public Iterator<float[]> getIterator();
-	
+	public int getNrOfSamples();
 }
