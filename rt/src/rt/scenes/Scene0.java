@@ -2,8 +2,8 @@ package rt.scenes;
 
 import rt.*;
 
-public final class MandelbrotScene implements Scene {
-
+public class Scene0 implements Scene {
+	
 	private String outputFilename;
 	private int SPP;
 	private int width;
@@ -13,20 +13,23 @@ public final class MandelbrotScene implements Scene {
 	private IntegratorFactory integratorFactory;
 	private SamplerFactory samplerFactory;
 	private Tonemapper tonemapper;
+	private Intersectable root;
 	
-	public MandelbrotScene()
+	public Scene0()
 	{
-		outputFilename = new String("Mandelbrot");
+		outputFilename = new String("Scene0");
 		
 		width = 1024;
 		height = 1024;
 		SPP = 16;
-		camera = new DummyCamera(width, height);
+		camera = new FixedCamera(width, height);
 		film = new Film(width, height);
 		tonemapper = new ClampTonemapper();
 		
-		integratorFactory = new MandelbrotIntegratorFactory();
+		integratorFactory = new DebugIntegratorFactory();
 		samplerFactory = new RandomSamplerFactory();
+		
+		root = new CSGCube();
 	}
 	
 	public IntegratorFactory getIntegratorFactory() {
@@ -51,7 +54,7 @@ public final class MandelbrotScene implements Scene {
 	}
 
 	public Intersectable getIntersectable() {
-		return null;
+		return root;
 	}
 
 	public LightList getLightList() {

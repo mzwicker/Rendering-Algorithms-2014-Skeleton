@@ -55,13 +55,13 @@ public class PinholeCamera implements Camera {
 		
 		// Make viewport matrix
 		Matrix4f v = new Matrix4f();
-		v.setIdentity();
-		v.setM00((float)width/2.f);
-		v.setM03((float)width/2.f);
-		v.setM11((float)height/2.f);
-		v.setM13((float)height/2.f);
-		v.setM22(1.f);
-		v.setM23(0.f);
+		v.setIdentity();		
+		v.m00 = (float)width/2.f;
+		v.m03 = (float)width/2.f;
+		v.m11 = (float)height/2.f;
+		v.m13 = (float)height/2.f;
+		v.m22 = 1.f;
+		v.m23 = 0.f;
 		v.invert();
 		
 		// Make the matrix that transforms a viewport pixel coordinate

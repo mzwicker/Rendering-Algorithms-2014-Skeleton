@@ -28,7 +28,7 @@ public class Main {
 		public int left, right, bottom, top;
 		public Integrator integrator;
 		public Scene scene;
-//		public Sampler pixelSampler;
+		public Sampler sampler;
 		
 		float tmp;
 		
@@ -42,7 +42,8 @@ public class Main {
 			
 //			integrator = integratorFactory.make(objects, lights, envMap);
 //			pixelSampler = samplerFactory.make(2);
-			integrator = scene.makeIntegrator();
+			integrator = scene.getIntegratorFactory().make(scene);
+			sampler = scene.getSamplerFactory().make();
 		}
 	}
 	
@@ -69,7 +70,7 @@ public class Main {
 							task.tmp = (float)k*(float)k;
 						}*/
 						
-						float samples[][] = task.integrator.makePixelSamples(task.scene.makeSampler(), task.scene.getSPP());
+						float samples[][] = task.integrator.makePixelSamples(task.sampler, task.scene.getSPP());
 //						task.integrator.prepareSamples(task.pixelSampler.getNrOfSamples());
 						
 //						Iterator<float[]> pixelItr = task.pixelSampler.getIterator();						
@@ -97,12 +98,12 @@ public class Main {
 	public static void main(String[] args)
 	{			
 		int taskSize = 128;
-		int nThreads = 1;
+		int nThreads = 8;
 		
 		// Scene to be rendered
 //		DragonEnvMap scene = new DragonEnvMap();
 //		Assignment1_Refractive scene = new Assignment1_Refractive();
-		Scene scene = new MandelbrotScene();
+		Scene scene = new Scene0();
 		
 //		camera = scene.camera;
 //		film = scene.film;

@@ -14,8 +14,8 @@ public interface Scene {
 	Tonemapper getTonemapper();
 	int getSPP();
 	
-	Integrator makeIntegrator();
-	Sampler makeSampler();
+	IntegratorFactory getIntegratorFactory();
+	SamplerFactory getSamplerFactory();
 
 	void prepare();
 }
