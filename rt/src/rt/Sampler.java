@@ -1,10 +1,6 @@
 package rt;
 
-import java.util.Iterator;
-
 public interface Sampler {
 
-	public void makeSamples();
-	public Iterator<float[]> getIterator();
-	public int getNrOfSamples();
+	public float[][] makeSamples(int n, int d);
 }

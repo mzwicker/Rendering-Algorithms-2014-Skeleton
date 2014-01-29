@@ -6,7 +6,7 @@ import javax.vecmath.Vector3f;
 public class Assignment1_First {
 
 	// Variables accessed by the renderer
-	public Camera camera;
+	public PinholeCamera camera;
 	public Film film;
 	public Intersectable objects;
 	public LightList lights;
@@ -30,7 +30,7 @@ public class Assignment1_First {
 		int width = 512;
 		int height = 512;
 		float aspect = (float)width/(float)height;
-		camera = new Camera(eye, lookAt, up, fov, aspect, width, height);
+		camera = new PinholeCamera(eye, lookAt, up, fov, aspect, width, height);
 		film = new Film(width, height);						
 
 		// A plane

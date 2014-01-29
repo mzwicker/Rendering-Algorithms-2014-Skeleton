@@ -2,7 +2,7 @@ package rt.scenes;
 
 import javax.vecmath.Vector3f;
 
-import rt.Camera;
+import rt.PinholeCamera;
 import rt.BlinnMaterial;
 import rt.Film;
 import rt.IntersectableList;
@@ -15,7 +15,7 @@ import rt.Sphere;
 
 public class RefractionTestScene {
 
-	public Camera camera;
+	public PinholeCamera camera;
 	public Film film;
 	public IntersectableList objects;
 	public LightList lights;
@@ -30,7 +30,7 @@ public class RefractionTestScene {
 		int width = 128;
 		int height = 128;
 		float aspect = (float)width/(float)height;
-		camera = new Camera(eye, lookAt, up, fov, aspect, width, height);
+		camera = new PinholeCamera(eye, lookAt, up, fov, aspect, width, height);
 		film = new Film(width, height);						
 		
 		// List of objects

@@ -1,59 +1,19 @@
 package rt;
 
-import java.util.Iterator;
-
 public class RandomSampler implements Sampler {
 
-	float[] samples;
-	int n, d;
-	public RandomSampler(int n, int d)
+	public float[][] makeSamples(int n, int d)
 	{
-		this.n = n;
-		this.d = d;
-		samples = new float[n*d];
-	}
-
-	public void makeSamples()
-	{
-		for(int i=0; i<n*d; i++)
-		{
-			samples[i] = (float)Math.random();
-		}
-	}
-	
-	public class RandomSamplerIterator implements Iterator<float[]>
-	{
-		private int i;
+		float samples[][] = new float[n][d];
 		
-		public RandomSamplerIterator()
+		for(int i=0; i<n; i++)
 		{
-			i = 0;
-		}
-		
-		public boolean hasNext()
-		{
-			return i*d<samples.length;
-		}
-		
-		public float[] next()
-		{
-			float[] s = new float[d];
 			for(int j=0; j<d; j++)
 			{
-				s[j] = samples[i*d+j];
+				samples[i][j] = (float)Math.random();
 			}
-			i++;
-			return s;
 		}
-		
-		public void remove()
-		{
-		}
-		
+		return samples;
 	}
-
-	public Iterator<float[]> getIterator() {
-		return new RandomSamplerIterator();
-	}
-
+	
 }

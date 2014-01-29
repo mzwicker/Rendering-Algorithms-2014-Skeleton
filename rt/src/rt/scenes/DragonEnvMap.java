@@ -7,7 +7,7 @@ import rt.*;
 
 public class DragonEnvMap {
 
-	public Camera camera;
+	public PinholeCamera camera;
 	public Film film;
 	public IntersectableList objects;
 	public LightList lights;
@@ -35,7 +35,7 @@ public class DragonEnvMap {
 		int width = 512;
 		int height = 512;
 		float aspect = (float)width/(float)height;
-		camera = new Camera(eye, lookAt, up, fov, aspect, width, height);
+		camera = new PinholeCamera(eye, lookAt, up, fov, aspect, width, height);
 		film = new Film(width, height);						
 	
 		// Environment map

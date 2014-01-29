@@ -3,5 +3,5 @@ package rt;
 public interface Integrator {
 
 	public Spectrum integrate(Ray r);
-	public void prepareSamples(int nRays);
+	public float[][] makePixelSamples(Sampler sampler, int n);
 }

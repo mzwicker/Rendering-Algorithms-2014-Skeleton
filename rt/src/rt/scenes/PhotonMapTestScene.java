@@ -6,7 +6,7 @@ import javax.media.jai.*;
 
 public class PhotonMapTestScene {
 
-	public Camera camera;
+	public PinholeCamera camera;
 	public Film film;
 	public IntersectableList objects;
 	public LightList lights;
@@ -35,7 +35,7 @@ public class PhotonMapTestScene {
 		int width = 128;
 		int height = 128;
 		float aspect = (float)width/(float)height;
-		camera = new Camera(eye, lookAt, up, fov, aspect, width, height);
+		camera = new PinholeCamera(eye, lookAt, up, fov, aspect, width, height);
 		film = new Film(width, height);						
 		
 		// List of objects

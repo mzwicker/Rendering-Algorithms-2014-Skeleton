@@ -9,7 +9,7 @@ import javax.vecmath.Vector3f;
 
 public class Assignment2_AreaLight {
 
-	public Camera camera;
+	public PinholeCamera camera;
 	public Film film;
 	public IntersectableList objects;
 	public LightList lights;
@@ -42,7 +42,7 @@ public class Assignment2_AreaLight {
 		int width = 256;
 		int height = 256;
 		float aspect = (float)width/(float)height;
-		camera = new Camera(eye, lookAt, up, fov, aspect, width, height);
+		camera = new PinholeCamera(eye, lookAt, up, fov, aspect, width, height);
 		film = new Film(width, height);						
 		
 		// List of objects

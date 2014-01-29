@@ -2,10 +2,10 @@ package rt;
 
 public class Film {
 
-	public int width, height;
-	public Spectrum[][] image;
-	public Spectrum[][] unnormalized;
-	public float nSamples[][];
+	private int width, height;
+	private Spectrum[][] image;
+	private Spectrum[][] unnormalized;
+	private float nSamples[][];
 	
 	public Film(int width, int height)
 	{
@@ -26,7 +26,7 @@ public class Film {
 		}
 	}
 	
-	public void addSample(float x, float y, Spectrum s)
+	public void addSample(double x, double y, Spectrum s)
 	{
 		if((int)x>=0 && (int)x<width && (int)y>=0 && (int)y<height)
 		{
@@ -38,5 +38,20 @@ public class Film {
 			image[(int)x][(int)y].g = unnormalized[(int)x][(int)y].g/nSamples[(int)x][(int)y];
 			image[(int)x][(int)y].b = unnormalized[(int)x][(int)y].b/nSamples[(int)x][(int)y];
 		}
+	}
+	
+	public int getWidth()
+	{
+		return width;
+	}
+	
+	public int getHeight()
+	{
+		return height;
+	}
+	
+	public Spectrum[][] getImage()
+	{
+		return image;
 	}
 }

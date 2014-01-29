@@ -1,7 +1,7 @@
 package rt;
 
-public abstract class IntegratorFactory {
+public interface IntegratorFactory {
 
-	public abstract Integrator make(Intersectable objects, LightList lights, EnvironmentMap envMap);
-	public abstract void prepareScene(Intersectable objects, LightList lights, EnvironmentMap envMap);
+	public Integrator make(Scene scene);
+	public void prepareScene(Scene scene);
 }
