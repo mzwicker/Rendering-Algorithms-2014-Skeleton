@@ -45,7 +45,7 @@ public class CSGNode extends CSGSolid {
 			if(b.type == BoundaryType.END && b.hitRecord!=null) 
 			{
 				b.hitRecord.normal.negate();
-				b.hitRecord.wIn.negate();
+				b.hitRecord.w.negate();
 			}
 			b.belongsTo = BelongsTo.LEFT;
 		}
@@ -58,7 +58,7 @@ public class CSGNode extends CSGSolid {
 			if(b.type == BoundaryType.END && b.hitRecord!=null)
 			{
 				b.hitRecord.normal.negate();
-				b.hitRecord.wIn.negate();
+				b.hitRecord.w.negate();
 			}
 			b.belongsTo = BelongsTo.RIGHT;			
 		}

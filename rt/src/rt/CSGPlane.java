@@ -87,7 +87,7 @@ public class CSGPlane extends CSGSolid {
 			Vector3f wIn = new Vector3f(r.direction);
 			wIn.negate();
 		
-			return new HitRecord(t, position, retNormal, wIn, null, null, material, 0.f, 0.f);
+			return new HitRecord(t, position, retNormal, wIn, null, material, 0.f, 0.f);
 		} else
 		{
 			return null;

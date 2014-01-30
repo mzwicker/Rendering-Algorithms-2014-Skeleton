@@ -2,31 +2,60 @@ package rt;
 
 import javax.vecmath.*;
 
+/**
+ * Stores information about a ray-surface intersection. This information 
+ * is typically used for shading.
+ */
 public class HitRecord  {
 
+	/**
+	 * Hit position.
+	 */
 	public Vector3f position;
-	public Vector3f normal;
-	public Vector3f t1, t2;
-	public float u, v;
 	
 	/**
-	 * Incident direction, but points away from surface!
+	 * Normal at hit point.
 	 */
-	public Vector3f wIn;
+	public Vector3f normal;
 	
-	public float t;
-	public Intersectable intersectable;
-	public Spectrum spectrum;
+	/**
+	 * Tangent vectors at hit point.
+	 */
+	public Vector3f t1, t2;
+	
+	/**
+	 * Texture coordinates at hit point.
+	 */
+	public float u, v;			
+	
+	/**
+	 * Direction towards origin of ray that hit surface. By convention it points away from 
+	 * the surface, that is, in the direction opposite to the incident ray.
+	 */
+	public Vector3f w;
+	
+	/**
+	 * t parameter of the ray at the hit point.
+	 */
+	public float t;				
+	
+	/**
+	 * The {@link Intersectable} that was hit.
+	 */
+	public Intersectable intersectable;	
+	
+	/** 
+	 * The material at the hit point.
+	 */
 	public Material material;
 	
-	public HitRecord(float t, Vector3f position, Vector3f normal, Vector3f wIn, Intersectable intersectable, Spectrum s, Material material, float u, float v)
+	public HitRecord(float t, Vector3f position, Vector3f normal, Vector3f w, Intersectable intersectable, Material material, float u, float v)
 	{
 		this.t = t;
 		this.position = position;
 		this.normal = normal;
-		this.wIn = wIn;
+		this.w = w;
 		this.intersectable = intersectable;
-		this.spectrum = s;
 		this.material = material;
 		this.u = u;
 		this.v = v;
