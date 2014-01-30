@@ -8,6 +8,11 @@ import java.util.*;
 import java.awt.image.*;
 import java.io.*;
 
+/**
+ * The main rendering loop. Provides multi-threading support. The scene to be rendered
+ * is hard-coded here, but you can easily change it. The scene contains all configuration
+ * information for the renderer.
+ */
 public class Main {
 
 	static LinkedList<RenderTask> queue;
@@ -23,6 +28,10 @@ public class Main {
 		public int n;
 	}
 	
+	/**
+	 * A render task represents a rectangular image region that is rendered
+	 * by a thread in one chunk.
+	 */
 	static public class RenderTask
 	{
 		public int left, right, bottom, top;
@@ -39,9 +48,10 @@ public class Main {
 			this.right = right;
 			this.bottom = bottom;
 			this.top = top;
-			
-//			integrator = integratorFactory.make(objects, lights, envMap);
-//			pixelSampler = samplerFactory.make(2);
+
+			// The render task has its own sampler and integrator. This way threads don't 
+			// compete for access to a shared sampler/integrator, and thread contention
+			// can be reduced. 
 			integrator = scene.getIntegratorFactory().make(scene);
 			sampler = scene.getSamplerFactory().make();
 		}
@@ -60,27 +70,25 @@ public class Main {
 					task = queue.poll();
 				}
 													
+				// Render the image block represented by the task
+				
+				// For all pixels
 				for(int j=task.bottom; j<task.top; j++)
 				{
 					for(int i=task.left; i<task.right; i++)
-					{					
-	/*					for(int k=1; k<100000; k++)
-						{
-						
-							task.tmp = (float)k*(float)k;
-						}*/
-						
+					{											
 						float samples[][] = task.integrator.makePixelSamples(task.sampler, task.scene.getSPP());
-//						task.integrator.prepareSamples(task.pixelSampler.getNrOfSamples());
-						
-//						Iterator<float[]> pixelItr = task.pixelSampler.getIterator();						
-//						while(pixelItr.hasNext())
+
+						// For all samples of the pixel
 						for(int k=0; k<samples.length; k++)
-						{
-//							float[] pixelSample = pixelItr.next();							
+						{							
+							// Make ray
 							Ray r = task.scene.getCamera().makeWorldSpaceRay(i, j, k, samples);
 						
+							// Evaluate ray
 							Spectrum s = task.integrator.integrate(r);
+							
+							// Write to film
 							task.scene.getFilm().addSample((double)i+(double)samples[k][0], (double)j+(double)samples[k][1], s);											
 						}
 					}
@@ -101,24 +109,14 @@ public class Main {
 		int nThreads = 1;
 		
 		// Scene to be rendered
-//		DragonEnvMap scene = new DragonEnvMap();
-//		Assignment1_Refractive scene = new Assignment1_Refractive();
 		Scene scene = new Scene0();
 		
-//		camera = scene.camera;
-//		film = scene.film;
-//		objects = scene.objects;
-//		lights = scene.lights;
-//		envMap = scene.envMap;
 		int width = scene.getFilm().getWidth();
 		int height = scene.getFilm().getHeight();
-//		integratorFactory = scene.integratorFactory;
-//		samplerFactory = scene.samplerFactory;
-		
-//		integratorFactory.prepareScene(objects, lights, envMap);
+
 		scene.prepare();
 		
-		// Make render tasks
+		// Make render tasks, split image into blocks to be rendered by the tasks
 		int nTasks = (int)Math.ceil((double)width/(double)taskSize) * (int)Math.ceil((double)height/(double)taskSize);
 		tasksLeft = new Counter(nTasks);
 		queue = new LinkedList<RenderTask>();
@@ -164,6 +162,7 @@ public class Main {
 		System.out.printf("\n");
 		System.out.printf("Image computed in %d ms.\n", timer.timeElapsed());
 		
+		// Tone map output image and writ to file
 		BufferedImage image = scene.getTonemapper().process(scene.getFilm());
 		try
 		{
