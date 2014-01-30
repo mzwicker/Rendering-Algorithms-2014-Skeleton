@@ -2,7 +2,7 @@ package rt;
 
 import javax.vecmath.*;
 
-public class HitRecord implements KdItem {
+public class HitRecord  {
 
 	public Vector3f position;
 	public Vector3f normal;

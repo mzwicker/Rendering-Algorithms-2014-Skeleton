@@ -9,28 +9,39 @@ public class FixedCamera implements Camera {
 	Vector3f eye;
 	Matrix4f m;
 	
+	/**
+	 * Makes a camera with fixed position and view frustum. The position is at [0,0,3] in world space. 
+	 * The camera looks down the negative z-axis towards the origin. The view frustum of the camera
+	 * goes through the points [-1,-1,-1], [1,-1,-1], [-1,1,-1],[1,1,-1] in camera coordinates.
+	 * 
+	 * @param width width of the image in pixels
+	 * @param height height of the image in pixels
+	 */
 	public FixedCamera(int width, int height)
 	{
 		// Fixed eye position in world coordinates
-		eye = new Vector3f(0.f, 0.f, -2.f);
+		eye = new Vector3f(0.f, 0.f, 3.0f);
 		
-		// Fixed camera to world transform
+		// Fixed camera to world transform, just a translation
 		Matrix4f c = new Matrix4f();
 		c.setIdentity();
 		c.m03 = eye.x;
 		c.m13 = eye.y;
 		c.m23 = eye.z;
 		
-		// Fixed projection matrix
+		// Fixed projection matrix, the viewing frustum defined here goes through
+		// the points [-1,-1,-1], [1,-1,-1], [-1,1,-1],[1,1,-1] in camera coordinates. 
 		Matrix4f p = new Matrix4f();
 		p.setIdentity();
-		p.m22 = -1.f;
-		p.m23 = -2.f;
+		float near = 1.f;
+		float far = 10.f;
+		p.m22 = -(far+near)/(far-near);
+		p.m23 = -(2*far*near)/(far-near);
 		p.m32 = -1.f;
 		p.m33 = 0.f;		
 		p.invert();
 		
-		// Make viewport matrix
+		// Make viewport matrix given image resolution
 		Matrix4f v = new Matrix4f();
 		v.setIdentity();		
 		v.m00 = (float)width/2.f;
@@ -44,17 +55,27 @@ public class FixedCamera implements Camera {
 		// Make the matrix that transforms a viewport pixel coordinate
 		// to a world space point
 		p.mul(v);
-		m = v;
+		c.mul(p);
+		m = c;
 	}
-	
+
+	/**
+	 * Make a world space ray.
+	 * 
+	 * @param i column index of pixel through which ray goes (0 = left boundary)
+	 * @param j row index of pixel through which ray goes (0 = bottom boundary)
+	 * @param k index of sample to use
+	 * @param samples array of samples
+	 */
 	public Ray makeWorldSpaceRay(int i, int j, int k, float[][] samples) {
 		// Make point on image plane in viewport coordinates, that is range [0,width-1] x [0,height-1]
+		// The assumption is that pixel [i,j] is the square [i,i+1] x [j,j+1] in viewport coordinates
 		Vector4f d = new Vector4f((float)i+samples[k][0],(float)j+samples[k][1],-1.f,1.f);
 		
-		// Transform it to world coordinates
+		// Transform it back to world coordinates
 		m.transform(d);
 		
-		// Make ray consisting of origin and direction
+		// Make ray consisting of origin and direction in world coordinates
 		Vector3f dir = new Vector3f();
 		dir.sub(new Vector3f(d.x, d.y, d.z), eye);
 		Ray r = new Ray(new Vector3f(eye), dir);

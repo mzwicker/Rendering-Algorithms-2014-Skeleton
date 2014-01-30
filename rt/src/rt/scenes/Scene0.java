@@ -2,76 +2,34 @@ package rt.scenes;
 
 import rt.*;
 
-public class Scene0 implements Scene {
-	
-	private String outputFilename;
-	private int SPP;
-	private int width;
-	private int height;
-	private Camera camera;
-	private Film film;
-	private IntegratorFactory integratorFactory;
-	private SamplerFactory samplerFactory;
-	private Tonemapper tonemapper;
-	private Intersectable root;
-	
+/**
+ * Ray traces a cube. An educational example to show how to use the {@link rt} framework.
+ */
+public class Scene0 extends Scene {
+		
 	public Scene0()
 	{
+		// Output file name
 		outputFilename = new String("Scene0");
 		
-		width = 1024;
-		height = 1024;
-		SPP = 16;
+		// Image width and height in pixels
+		width = 512;
+		height = 512;
+		
+		// Number of samples per pixel
+		SPP = 1;
+		
+		// Specify which camera, film, and tonemapper to use
 		camera = new FixedCamera(width, height);
 		film = new Film(width, height);
 		tonemapper = new ClampTonemapper();
 		
+		// Specify which integrator and sampler to use
 		integratorFactory = new DebugIntegratorFactory();
 		samplerFactory = new RandomSamplerFactory();
 		
+		// Define the root object (an intersectable) of the scene
 		root = new CSGCube();
 	}
 	
-	public IntegratorFactory getIntegratorFactory() {
-		return integratorFactory;
-	}
-
-	public SamplerFactory getSamplerFactory() {
-		return samplerFactory;
-	}
-	
-	public String getOutputFilename()
-	{
-		return outputFilename;
-	}
-	
-	public Camera getCamera() {
-		return camera;
-	}
-
-	public Film getFilm() {
-		return film;
-	}
-
-	public Intersectable getIntersectable() {
-		return root;
-	}
-
-	public LightList getLightList() {
-		return null;
-	}
-
-	public int getSPP() {
-		return SPP;
-	}
-	
-	public Tonemapper getTonemapper()
-	{
-		return tonemapper;
-	}
-	
-	public void prepare()
-	{
-	}
-
 }

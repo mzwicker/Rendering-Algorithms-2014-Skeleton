@@ -75,7 +75,7 @@ public class Main {
 						
 //						Iterator<float[]> pixelItr = task.pixelSampler.getIterator();						
 //						while(pixelItr.hasNext())
-						for(int k=0; k<task.scene.getSPP(); k++)
+						for(int k=0; k<samples.length; k++)
 						{
 //							float[] pixelSample = pixelItr.next();							
 							Ray r = task.scene.getCamera().makeWorldSpaceRay(i, j, k, samples);
@@ -98,7 +98,7 @@ public class Main {
 	public static void main(String[] args)
 	{			
 		int taskSize = 128;
-		int nThreads = 8;
+		int nThreads = 1;
 		
 		// Scene to be rendered
 //		DragonEnvMap scene = new DragonEnvMap();

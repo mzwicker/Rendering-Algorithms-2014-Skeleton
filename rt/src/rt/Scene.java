@@ -3,19 +3,59 @@ package rt;
 /*
  * Defines scene properties that need to be made accessible to the renderer. 
  */
-public interface Scene {
+public abstract class Scene {
 
-	String getOutputFilename();
+	protected String outputFilename;
+	protected int SPP;
+	protected int width;
+	protected int height;
+	protected Camera camera;
+	protected Film film;
+	protected IntegratorFactory integratorFactory;
+	protected SamplerFactory samplerFactory;
+	protected Tonemapper tonemapper;
+	protected Intersectable root;
 	
-	Camera getCamera();
-	Intersectable getIntersectable();
-	LightList getLightList();
-	Film getFilm();
-	Tonemapper getTonemapper();
-	int getSPP();
-	
-	IntegratorFactory getIntegratorFactory();
-	SamplerFactory getSamplerFactory();
+	public IntegratorFactory getIntegratorFactory() {
+		return integratorFactory;
+	}
 
-	void prepare();
+	public SamplerFactory getSamplerFactory() {
+		return samplerFactory;
+	}
+	
+	public String getOutputFilename()
+	{
+		return outputFilename;
+	}
+	
+	public Camera getCamera() {
+		return camera;
+	}
+
+	public Film getFilm() {
+		return film;
+	}
+
+	public Intersectable getIntersectable() {
+		return root;
+	}
+
+	public LightList getLightList() {
+		return null;
+	}
+
+	public int getSPP() {
+		return SPP;
+	}
+	
+	public Tonemapper getTonemapper()
+	{
+		return tonemapper;
+	}
+	
+	public void prepare()
+	{
+	}
+
 }

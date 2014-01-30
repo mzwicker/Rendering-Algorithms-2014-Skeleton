@@ -1,55 +1,22 @@
 package rt;
 
-import java.util.Iterator;
-
-
+/**
+ * Returns always one sample at 0.5 in all dimensions.
+ */
 public class OneSampler implements Sampler {
 
 	int d;
 	
-	public OneSampler(int d)
-	{
-		this.d = d;
-	}
-	
-	public void makeSamples()
+	public OneSampler()
 	{
 	}
 	
-	public class OneSamplerIterator implements Iterator<float[]>
-	{	
-		boolean consumed;
+	public float[][] makeSamples(int n, int d)
+	{
+		float[][] samples = new float[1][d];
+		for(int i=0; i<d; i++)
+			samples[0][i] = 0.5f;
 		
-		public OneSamplerIterator()
-		{
-			consumed = false;
-		}
-		
-		public boolean hasNext()
-		{
-			return !consumed;
-		}
-		
-		public float[] next()
-		{
-			consumed = true;
-			
-			float[] s = new float[d];
-			for(int j=0; j<d; j++)
-			{
-				s[j] = 0.5f;
-			}
-			return s;
-		}
-		
-		public void remove()
-		{
-		}
-		
+		return samples;
 	}
-
-	public Iterator<float[]> getIterator() {
-		return new OneSamplerIterator();
-	}
-
 }

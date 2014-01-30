@@ -4,7 +4,16 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 
-public class CSGNode extends CSGSolid implements Intersectable {
+/**
+ * A CSG node combines two CSG solids using a set operation, such as intersection,
+ * addition, or subtraction.
+ */
+public class CSGNode extends CSGSolid {
+	
+	public enum OperationType { INTERSECT, ADD, SUBTRACT };
+	
+	protected CSGSolid left, right;
+	protected OperationType operation;
 	
 	public CSGNode(CSGSolid left, CSGSolid right, OperationType operation)
 	{
@@ -12,30 +21,19 @@ public class CSGNode extends CSGSolid implements Intersectable {
 		this.right = right;
 		this.operation = operation;
 	}
-	
-	public HitRecord intersect(Ray r) {
 
-		ArrayList<IntervalBoundary> intervals = computeIntervals(r);
-		
-		if(intervals.size() > 0)
-		{
-			HitRecord firstHit = intervals.get(0).hitRecord;
-		
-			if(firstHit!=null &&firstHit.t>0.f)
-			{		
-				firstHit.intersectable = this;
-				return firstHit;
-			} else
-				return null;
-		} else
-			return null;
-	}
-	
-	public ArrayList<IntervalBoundary> computeIntervals(Ray r)
+	/**
+	 * Get boundaries of intersection intervals. The main idea is to first get the boundaries
+	 * of the two CSG solids to be combined. Then, the boundaries are merged according
+	 * to the set operation specified by the node.
+	 */
+	public ArrayList<IntervalBoundary> getIntervalBoundaries(Ray r)
 	{
 		ArrayList<IntervalBoundary> combined = new ArrayList<IntervalBoundary>();
-		ArrayList<IntervalBoundary> leftIntervals = left.computeIntervals(r);
-		ArrayList<IntervalBoundary> rightIntervals = right.computeIntervals(r);
+		
+		// Get interval boundaries of left and right children
+		ArrayList<IntervalBoundary> leftIntervals = left.getIntervalBoundaries(r);
+		ArrayList<IntervalBoundary> rightIntervals = right.getIntervalBoundaries(r);
 		
 		// Tag interval boundaries with left or right node
 		Iterator<IntervalBoundary> it = leftIntervals.iterator();
@@ -71,7 +69,7 @@ public class CSGNode extends CSGSolid implements Intersectable {
 		Collections.sort(combined);
 
 		// Traverse interval boundaries and set inside/outside 
-		// according to Boolean operation
+		// according to Boolean set operation to combine the two child solids
 		boolean inLeft, inRight;
 		inLeft = false;
 		inRight = false;
@@ -141,11 +139,4 @@ public class CSGNode extends CSGSolid implements Intersectable {
 		return combined;
 	}
 
-	public float surfaceArea() {
-		return 0.f;
-	}
-	
-	public AxisAlignedBox boundingBox() {
-		return new AxisAlignedBox(0.f, 0.f, 0.f, 0.f, 0.f, 0.f);
-	}
 }
