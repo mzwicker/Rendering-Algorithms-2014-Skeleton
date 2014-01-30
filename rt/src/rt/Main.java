@@ -106,7 +106,7 @@ public class Main {
 	public static void main(String[] args)
 	{			
 		int taskSize = 128;
-		int nThreads = 1;
+		int nThreads = 2;
 		
 		// Scene to be rendered
 		Scene scene = new Scene0();

@@ -17,7 +17,7 @@ public class Scene0 extends Scene {
 		height = 512;
 		
 		// Number of samples per pixel
-		SPP = 1;
+		SPP = 16;
 		
 		// Specify which camera, film, and tonemapper to use
 		camera = new FixedCamera(width, height);
