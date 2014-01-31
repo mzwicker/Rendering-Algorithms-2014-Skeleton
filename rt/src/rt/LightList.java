@@ -1,5 +1,7 @@
 package rt;
 
-public class LightList {
+import java.util.ArrayList;
+
+public class LightList extends ArrayList<LightSource> {
 
 }

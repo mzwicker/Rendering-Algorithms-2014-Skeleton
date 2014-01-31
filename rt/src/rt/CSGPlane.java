@@ -25,8 +25,10 @@ public class CSGPlane extends CSGSolid {
 		this.normal = new Vector3f(normal);
 		this.normal.normalize();
 		this.d = d;
-	}
 		
+		material = new DiffuseMaterial(new Spectrum(1.f, 1.f, 1.f));
+	}		
+	
 	public ArrayList<IntervalBoundary> getIntervalBoundaries(Ray r)
 	{
 		ArrayList<IntervalBoundary> boundaries = new ArrayList<IntervalBoundary>();

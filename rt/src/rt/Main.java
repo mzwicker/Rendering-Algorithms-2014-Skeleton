@@ -39,8 +39,6 @@ public class Main {
 		public Scene scene;
 		public Sampler sampler;
 		
-		float tmp;
-		
 		public RenderTask(Scene scene, int left, int right, int bottom, int top)
 		{			
 			this.scene = scene;
@@ -106,7 +104,7 @@ public class Main {
 	public static void main(String[] args)
 	{			
 		int taskSize = 128;
-		int nThreads = 2;
+		int nThreads = 24;
 		
 		// Scene to be rendered
 		Scene scene = new Scene0();

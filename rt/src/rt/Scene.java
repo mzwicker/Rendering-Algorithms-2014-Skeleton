@@ -15,6 +15,7 @@ public abstract class Scene {
 	protected SamplerFactory samplerFactory;
 	protected Tonemapper tonemapper;
 	protected Intersectable root;
+	protected LightList lightList;
 	
 	public IntegratorFactory getIntegratorFactory() {
 		return integratorFactory;
@@ -40,9 +41,9 @@ public abstract class Scene {
 	public Intersectable getIntersectable() {
 		return root;
 	}
-
+	
 	public LightList getLightList() {
-		return null;
+		return lightList;
 	}
 
 	public int getSPP() {

@@ -24,4 +24,18 @@ public class Spectrum {
 		this.g = s.g;
 		this.b = s.b;
 	}
+	
+	public void scale(float t)
+	{
+		r = r*t;
+		g = g*t;
+		b = b*t;
+	}
+	
+	public void add(Spectrum s)
+	{
+		r = r+s.r;
+		g = g+s.g;
+		b = b+s.b;
+	}
 }
