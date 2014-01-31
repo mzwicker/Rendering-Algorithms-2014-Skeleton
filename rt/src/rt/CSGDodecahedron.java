@@ -1,12 +1,14 @@
 package rt;
 
+import java.util.ArrayList;
+
 import javax.vecmath.*;
 
 /**
  * A dodecahedron implemented using planes and CSG. The dodecahedron has its center at [0,0,0]. 
  * All planes are at unit distance from the origin.
  */
-public class CSGDodecahedron implements Intersectable {
+public class CSGDodecahedron extends CSGSolid {
 
 	CSGNode root;
 	
@@ -83,8 +85,8 @@ public class CSGDodecahedron implements Intersectable {
 		root = new CSGNode(node3, nodes2[2], CSGNode.OperationType.INTERSECT);
 	}
 
-	public HitRecord intersect(Ray r) {
-		return root.intersect(r);
+	ArrayList<IntervalBoundary> getIntervalBoundaries(Ray r)
+	{
+		return root.getIntervalBoundaries(r);
 	}
-
 }

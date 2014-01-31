@@ -28,11 +28,18 @@ public class Spectrum {
 		this.b = s.b;
 	}
 	
-	public void scale(float t)
+	public void mult(float t)
 	{
 		r = r*t;
 		g = g*t;
 		b = b*t;
+	}
+	
+	public void mult(Spectrum s)
+	{
+		r = r*s.r;
+		g = g*s.g;
+		b = b*s.b;
 	}
 	
 	public void add(Spectrum s)

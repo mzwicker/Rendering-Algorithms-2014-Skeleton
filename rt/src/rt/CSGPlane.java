@@ -44,17 +44,31 @@ public class CSGPlane extends CSGSolid {
 			b1.t = hitRecord.t;
 			b2.hitRecord = null;
 			
-			// Determine if ray entered or left the half-space defined by the plane
+			// Determine if ray entered or left the half-space defined by the plane.
 			if(normal.dot(r.direction) < 0)
 			{
 				b1.type = BoundaryType.START;
 				b2.type = BoundaryType.END;
-				b2.t = Float.POSITIVE_INFINITY;			
+				if(hitRecord.t > 0)
+					// If the t value of the START boundary was positive, so is
+					// the t value of the END boundary
+					b2.t = Float.POSITIVE_INFINITY;
+				else
+					// If the t value of the START boundary was negative, so is
+					// the t value of the END boundary
+					b2.t = Float.NEGATIVE_INFINITY;
 			} else
 			{
 				b1.type = BoundaryType.END;
 				b2.type = BoundaryType.START;
-				b2.t = Float.NEGATIVE_INFINITY;			
+				if(hitRecord.t > 0)
+					// If the t value of the END boundary was positive, then 
+					// the t value of the START boundary is negative
+					b2.t = Float.NEGATIVE_INFINITY;
+				else
+					// If the t value of the END boundary was negative, then 
+					// the t value of the START boundary is positive
+					b2.t = Float.POSITIVE_INFINITY;
 			}
 			
 			boundaries.add(b1);
@@ -65,7 +79,11 @@ public class CSGPlane extends CSGSolid {
 	}
 		
 	/**
-	 * Computes ray-plane intersection.
+	 * Computes ray-plane intersection. Note: we return all hit points,
+	 * also the ones with negative t-value, that is, points that lie "behind"
+	 * the origin of the ray. This is necessary for CSG operations to work
+	 * correctly!  
+	 * 
 	 * @param r the ray
 	 * @return the hit record of the intersection point, or null 
 	 */
@@ -89,7 +107,7 @@ public class CSGPlane extends CSGSolid {
 			Vector3f wIn = new Vector3f(r.direction);
 			wIn.negate();
 		
-			return new HitRecord(t, position, retNormal, wIn, null, material, 0.f, 0.f);
+			return new HitRecord(t, position, retNormal, wIn, null, material, 0.f, 0.f); 
 		} else
 		{
 			return null;

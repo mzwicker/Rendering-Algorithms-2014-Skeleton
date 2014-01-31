@@ -83,8 +83,12 @@ public class Main {
 							// Make ray
 							Ray r = task.scene.getCamera().makeWorldSpaceRay(i, j, k, samples);
 						
+							Spectrum s;
+							if(j>260)
+								s = new Spectrum(1.f,0.f,0.f);
+							
 							// Evaluate ray
-							Spectrum s = task.integrator.integrate(r);
+							s = task.integrator.integrate(r);							
 							
 							// Write to film
 							task.scene.getFilm().addSample((double)i+(double)samples[k][0], (double)j+(double)samples[k][1], s);											
@@ -103,8 +107,8 @@ public class Main {
 	
 	public static void main(String[] args)
 	{			
-		int taskSize = 128;
-		int nThreads = 24;
+		int taskSize = 32;
+		int nThreads = 4;
 		
 		// Scene to be rendered
 		Scene scene = new Scene0();

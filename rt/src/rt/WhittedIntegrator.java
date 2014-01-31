@@ -35,8 +35,10 @@ public class WhittedIntegrator implements Integrator {
 			Iterator<LightSource> it = lightList.iterator();
 			while(it.hasNext())
 			{
-				// Make direction from hit point to light source position
-				LightGeometry lightGeo = it.next().getGeometry(null);
+				LightSource lightSource = it.next();
+				
+				// Make direction from hit point to light source position				
+				LightGeometry lightGeo = lightSource.getGeometry(null);
 				Vector3f lightPos = lightGeo.position;
 				Vector3f lightDir = new Vector3f(lightPos);
 				lightDir.sub(hitRecord.position);
@@ -46,17 +48,23 @@ public class WhittedIntegrator implements Integrator {
 				// Evaluate the BRDF
 				brdfValue = hitRecord.material.evaluateBRDF(hitRecord, hitRecord.w, lightDir);
 				
+				// Multiply together factors relevant for shading, that is, brdf * emission * ndotl * geometry term
+				Spectrum s = new Spectrum(brdfValue);
+				
+				// Multiply with emission
+				s.mult(lightSource.getEmission(null));
+				
 				// Multiply with cosine of surface normal and incident direction
 				float ndotl = hitRecord.normal.dot(lightDir);
 				ndotl = Math.max(ndotl, 0.f);
-				brdfValue.scale(ndotl);
+				s.mult(ndotl);
 				
-				// Multiply with 1/(squared distance), only correct like this 
+				// Geometry term: multiply with 1/(squared distance), only correct like this 
 				// for point lights (not area lights)!
-				brdfValue.scale(1.f/(d*d));
+				s.mult(1.f/(d*d));
 				
 				// Accumulate
-				outgoing.add(brdfValue);
+				outgoing.add(s);
 			}
 			
 			return outgoing;
