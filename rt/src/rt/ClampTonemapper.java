@@ -3,10 +3,16 @@ package rt;
 import java.awt.image.BufferedImage;
 
 /**
- * Tone maps a film by clamping to range [0,1].
+ * Tone maps a film by clamping all color channels to range [0,1].
  */
 public class ClampTonemapper implements Tonemapper {
 
+	/**
+	 * Perform tone mapping and return a {@link java.awt.image.BufferedImage}.
+	 * 
+	 * @param film the film to be tonemapped
+	 * @return the output image
+	 */
 	public BufferedImage process(Film film)
 	{
 		BufferedImage img = new BufferedImage(film.getWidth(), film.getHeight(), BufferedImage.TYPE_3BYTE_BGR);
@@ -15,13 +21,9 @@ public class ClampTonemapper implements Tonemapper {
 		{
 			for(int j=0; j<film.getHeight(); j++)
 			{
+				// Clamping
 				Spectrum s = film.getImage()[i][j];
-				if(s.r<0) s.r=0.f;
-				if(s.r>1) s.r=1.f;
-				if(s.g<0) s.g=0.f;
-				if(s.g>1) s.g=1.f;
-				if(s.b<0) s.b=0.f;
-				if(s.b>1) s.b=1.f;
+				s.clamp(0,1);
 				img.setRGB(i, film.getHeight()-1-j, ((int)(255.f*s.r) << 16) | ((int)(255.f*s.g) << 8) | ((int)(255.f*s.b)));
 			}
 		}

@@ -2,6 +2,9 @@ package rt;
 
 import javax.vecmath.*;
 
+/**
+ * A point light source.
+ */
 public class PointLight implements LightSource {
 
 	Vector3f position;
@@ -16,7 +19,12 @@ public class PointLight implements LightSource {
 	public Spectrum getEmission(float[] s) {
 		return emission;
 	}
-	
+
+	/**
+	 * Get light source position and normal for location on the
+	 * light source given by a sample. Always returns null for 
+	 * the light source normal.
+	 */
 	public LightGeometry getGeometry(float[] s) {
 		return new LightGeometry(position, null);
 	}

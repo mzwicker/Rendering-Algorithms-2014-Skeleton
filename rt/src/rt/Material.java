@@ -2,6 +2,9 @@ package rt;
 
 import javax.vecmath.*;
 
+/**
+ * Materials implement functionality for shading surfaces using their BRDFs.
+ */
 public interface Material {
 	
 	/**

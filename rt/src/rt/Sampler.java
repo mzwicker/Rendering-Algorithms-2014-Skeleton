@@ -1,5 +1,11 @@
 package rt;
 
+/**
+ * Makes random samples, which are used for Monte Carlo rendering. The 
+ * samples always need to lie in the range [0,1]. Various versions such 
+ * as purely random, jittered, or low discrepancy samplers could be 
+ * implemented.   
+ */
 public interface Sampler {
 
 	/**
@@ -9,7 +15,7 @@ public interface Sampler {
 	 * 
 	 * @param n desired number of samples
 	 * @param d dimensionality of samples
-	 * @return
+	 * @return the array of d-dimensional samples samples
 	 */
 	public float[][] makeSamples(int n, int d);
 }

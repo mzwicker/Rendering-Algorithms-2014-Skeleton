@@ -2,6 +2,9 @@ package rt;
 
 import java.util.Random;
 
+/**
+ * Makes uniform random samples in the range [0,1].
+ */
 public class RandomSampler implements Sampler {
 
 	Random random;
@@ -11,6 +14,11 @@ public class RandomSampler implements Sampler {
 		random = new Random();
 	}
 	
+	/**
+	 * Makes @param n uniform random samples in @param d
+	 * dimensions. The samples are in the range [0,1] in 
+	 * all dimensions.
+	 */
 	public float[][] makeSamples(int n, int d)
 	{
 		float samples[][] = new float[n][d];

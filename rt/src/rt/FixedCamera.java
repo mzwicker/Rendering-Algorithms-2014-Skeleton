@@ -4,6 +4,9 @@ import javax.vecmath.Matrix4f;
 import javax.vecmath.Vector3f;
 import javax.vecmath.Vector4f;
 
+/**
+ * A simple camera with fixed position and view frustum.
+ */
 public class FixedCamera implements Camera {
 
 	Vector3f eye;
@@ -52,7 +55,7 @@ public class FixedCamera implements Camera {
 		v.m23 = 0.f;
 		v.invert();
 		
-		// Make the matrix that transforms a viewport pixel coordinate
+		// Make the matrix c*p*v that transforms a viewport pixel coordinate
 		// to a world space point
 		p.mul(v);
 		c.mul(p);

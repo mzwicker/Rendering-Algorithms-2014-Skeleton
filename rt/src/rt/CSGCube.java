@@ -36,13 +36,4 @@ public class CSGCube implements Intersectable {
 		return root.intersect(r);
 	}
 
-	public float surfaceArea() {
-		return root.surfaceArea();
-	}
-
-	public AxisAlignedBox boundingBox() {
-		return root.boundingBox();
-	}
-	
-	
 }

@@ -64,14 +64,4 @@ public abstract class CSGSolid implements Intersectable {
 	 */
 	abstract ArrayList<IntervalBoundary> getIntervalBoundaries(Ray r);
 
-	// Dummy implementation
-	public AxisAlignedBox boundingBox() {
-		return new AxisAlignedBox(0.f, 0.f, 0.f, 0.f, 0.f, 0.f);
-	}
-
-	// Dummy implementation
-	public float surfaceArea() {
-		return 0.f;
-	}
-
 }

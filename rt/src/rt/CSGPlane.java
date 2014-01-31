@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 /**
  * A plane for CSG operations. The plane represents a solid that fills a whole half-space.
- * The plane normal is assumed to point into the empty half-space. The plane occupies the 
+ * The plane normal is assumed to point into the empty half-space, and the plane occupies the 
  * half-space opposite of the normal.
  */
 public class CSGPlane extends CSGSolid {

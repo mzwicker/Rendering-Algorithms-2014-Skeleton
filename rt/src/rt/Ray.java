@@ -2,6 +2,9 @@ package rt;
 
 import javax.vecmath.*;
 
+/**
+ * A ray represented by an origin and a direction.
+ */
 public class Ray {
 
 	public Vector3f origin;

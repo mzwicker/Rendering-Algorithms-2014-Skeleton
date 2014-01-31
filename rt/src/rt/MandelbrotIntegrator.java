@@ -7,7 +7,7 @@ package rt;
 public class MandelbrotIntegrator implements Integrator {
 
 	/**
-	 * Compute Mandelbrot set. See {@ link http://en.wikipedia.org/wiki/Mandelbrot_set}.  
+	 * Compute Mandelbrot set. See {@linktourl http://en.wikipedia.org/wiki/Mandelbrot_set}.  
 	 */
 	public Spectrum integrate(Ray r)
 	{

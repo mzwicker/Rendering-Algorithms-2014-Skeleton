@@ -4,11 +4,18 @@ import javax.vecmath.*;
 
 /**
  * A dodecahedron implemented using planes and CSG. The dodecahedron has its center at [0,0,0]. 
+ * All planes are at unit distance from the origin.
  */
 public class CSGDodecahedron implements Intersectable {
 
 	CSGNode root;
 	
+	/**
+	 * Makes a dodecahedron by specifying planes that contain faces, and using CSG
+	 * intersection. Face normals are computed using the facts that in a dodecahedron
+	 * (1) the top and bottom faces are uniform pentagons, (2) dihedral angles between 
+	 * all faces are pi - arctan(2).
+	 */
 	public CSGDodecahedron()
 	{
 		Vector3f normal;
@@ -26,7 +33,10 @@ public class CSGDodecahedron implements Intersectable {
 		{
 			float x, y, z;
 			float theta;
-			
+		
+			// Make face normals, using facts that in a dodecahedron
+			// - top and bottom faces are uniform pentagons
+			// - dihedral angles between all faces are pi - arctan(2)
 			theta = (float)i * 2.f*(float)Math.PI / 5.f;
 			x = (float)(Math.sin(theta) * Math.sin(Math.atan(2.f)));
 			z = (float)(Math.cos(theta) * Math.sin(Math.atan(2.f)));
@@ -47,6 +57,7 @@ public class CSGDodecahedron implements Intersectable {
 			float x, y, z;
 			float theta;
 			
+			// Make face normals
 			theta = ((float)i+0.5f) * 2.f*(float)Math.PI / 5.f;
 			x = (float)(Math.sin(theta) * Math.sin(Math.atan(2.f)));
 			z = (float)(Math.cos(theta) * Math.sin(Math.atan(2.f)));
@@ -76,12 +87,4 @@ public class CSGDodecahedron implements Intersectable {
 		return root.intersect(r);
 	}
 
-	public float surfaceArea() {
-		return root.surfaceArea();
-	}
-
-	public AxisAlignedBox boundingBox() {
-		return root.boundingBox();
-	}
-		
 }

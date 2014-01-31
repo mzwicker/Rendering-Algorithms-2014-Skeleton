@@ -22,7 +22,7 @@ public class Scene0 extends Scene {
 		
 		// Specify which camera, film, and tonemapper to use
 		camera = new FixedCamera(width, height);
-		film = new Film(width, height);
+		film = new BoxFilterFilm(width, height);
 		tonemapper = new ClampTonemapper();
 		
 		// Specify which integrator and sampler to use

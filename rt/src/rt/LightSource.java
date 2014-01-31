@@ -3,7 +3,7 @@ package rt;
 import javax.vecmath.*;
 
 /**
- * Interface required for light sources.
+ * Interface for light sources.
  */
 public interface LightSource {
 

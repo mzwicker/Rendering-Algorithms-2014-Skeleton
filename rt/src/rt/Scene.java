@@ -1,6 +1,6 @@
 package rt;
 
-/*
+/**
  * Defines scene properties that need to be made accessible to the renderer. 
  */
 public abstract class Scene {
@@ -10,7 +10,7 @@ public abstract class Scene {
 	protected int width;
 	protected int height;
 	protected Camera camera;
-	protected Film film;
+	protected BoxFilterFilm film;
 	protected IntegratorFactory integratorFactory;
 	protected SamplerFactory samplerFactory;
 	protected Tonemapper tonemapper;
@@ -34,7 +34,7 @@ public abstract class Scene {
 		return camera;
 	}
 
-	public Film getFilm() {
+	public BoxFilterFilm getFilm() {
 		return film;
 	}
 

@@ -1,5 +1,8 @@
 package rt;
 
+/**
+ * Makes a {@link WhittedIntegrator}.
+ */
 public class WhittedIntegratorFactory implements IntegratorFactory {
 
 	public Integrator make(Scene scene) {

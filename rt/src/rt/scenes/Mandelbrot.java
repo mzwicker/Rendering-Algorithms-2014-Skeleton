@@ -21,7 +21,7 @@ public final class Mandelbrot extends Scene {
 		
 		// Specify the camera, film, and tonemapper to use
 		camera = new DummyCamera(width, height);
-		film = new Film(width, height);
+		film = new BoxFilterFilm(width, height);
 		tonemapper = new ClampTonemapper();
 		
 		// Specify the integrator and sampler to use

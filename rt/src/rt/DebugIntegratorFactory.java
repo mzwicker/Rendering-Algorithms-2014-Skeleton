@@ -1,5 +1,8 @@
 package rt;
 
+/**
+ * Makes a {@link DebugIntegrator}.
+ */
 public class DebugIntegratorFactory implements IntegratorFactory {
 
 	public Integrator make(Scene scene)

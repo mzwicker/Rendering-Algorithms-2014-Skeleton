@@ -1,5 +1,8 @@
 package rt;
 
+/**
+ * Stores a spectrum of color values. In this implementation, we work with RGB colors.
+ */
 public class Spectrum {
 
 	public float r, g, b;
@@ -37,5 +40,15 @@ public class Spectrum {
 		r = r+s.r;
 		g = g+s.g;
 		b = b+s.b;
+	}
+	
+	public void clamp(float min, float max)
+	{
+		r = Math.min(max,  r);
+		r = Math.max(min, r);
+		g = Math.min(max,  g);
+		g = Math.max(min, g);
+		b = Math.min(max,  b);
+		b = Math.max(min, b);
 	}
 }

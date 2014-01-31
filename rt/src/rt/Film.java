@@ -1,57 +1,42 @@
 package rt;
 
-public class Film {
+/**
+ * A film stores a 2D grid of {@link rt.Spectrum} representing an image.
+ * Rendered samples can be added one by one to a film. Samples are
+ * filtered using some filter (depending on the implementation of this 
+ * interface) when added.
+ */
+public interface Film {
+	
+	/**
+	 * Add a sample to the film at a specified floating point position. The position
+	 * coordinates are assumed to be in image space.
+	 * 
+	 * @param x x-coordinate in image space 
+	 * @param y y-coordinate in image space
+	 * @param s sample to be added
+	 */
+	public void addSample(double x, double y, Spectrum s);
+	
+	/**
+	 * Returns the image stored in the film.
+	 * 
+	 * @return the image
+	 */
+	public Spectrum[][] getImage();
+	
+	/**
+	 * Returns width (in pixels) of film.
+	 * 
+	 * @return width in pixels
+	 */
+	public int getWidth();
+	
+	/**
+	 * Returns height (in pixels) of film.
+	 * 
+	 * @return height in pixels
+	 */
+	public int getHeight();
 
-	private int width, height;
-	private Spectrum[][] image;
-	private Spectrum[][] unnormalized;
-	private float nSamples[][];
-	
-	public Film(int width, int height)
-	{
-		this.width = width;
-		this.height = height;
-		image = new Spectrum[width][height];
-		unnormalized = new Spectrum[width][height];
-		nSamples = new float[width][height];
-		
-		for(int i=0; i<width; i++)
-		{
-			for(int j=0; j<height; j++)
-			{
-				image[i][j] = new Spectrum();
-				unnormalized[i][j] = new Spectrum();
-				nSamples[i][j] = 0.f;
-			}
-		}
-	}
-	
-	public void addSample(double x, double y, Spectrum s)
-	{
-		if((int)x>=0 && (int)x<width && (int)y>=0 && (int)y<height)
-		{
-			unnormalized[(int)x][(int)y].r += s.r;
-			unnormalized[(int)x][(int)y].g += s.g;
-			unnormalized[(int)x][(int)y].b += s.b;
-			nSamples[(int)x][(int)y]++;
-			image[(int)x][(int)y].r = unnormalized[(int)x][(int)y].r/nSamples[(int)x][(int)y];
-			image[(int)x][(int)y].g = unnormalized[(int)x][(int)y].g/nSamples[(int)x][(int)y];
-			image[(int)x][(int)y].b = unnormalized[(int)x][(int)y].b/nSamples[(int)x][(int)y];
-		}
-	}
-	
-	public int getWidth()
-	{
-		return width;
-	}
-	
-	public int getHeight()
-	{
-		return height;
-	}
-	
-	public Spectrum[][] getImage()
-	{
-		return image;
-	}
 }
