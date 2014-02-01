@@ -107,8 +107,8 @@ public class Main {
 	
 	public static void main(String[] args)
 	{			
-		int taskSize = 32;
-		int nThreads = 4;
+		int taskSize = 32;	// Each task renders a square image block of this size
+		int nThreads = 4;	// Number of threads to be used for rendering
 		
 		// Scene to be rendered
 		Scene scene = new Scene0();
