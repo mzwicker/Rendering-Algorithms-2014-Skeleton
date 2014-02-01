@@ -9,6 +9,7 @@ import rt.intersectables.CSGNode;
 import rt.intersectables.CSGPlane;
 import rt.lightsources.PointLight;
 import rt.samplers.OneSamplerFactory;
+import rt.tonemappers.ClampTonemapper;
 
 import javax.vecmath.*;
 

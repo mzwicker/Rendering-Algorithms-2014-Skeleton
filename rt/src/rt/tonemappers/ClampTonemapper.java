@@ -1,6 +1,10 @@
-package rt;
+package rt.tonemappers;
 
 import java.awt.image.BufferedImage;
+
+import rt.Film;
+import rt.Spectrum;
+import rt.Tonemapper;
 
 /**
  * Tone maps a film by clamping all color channels to range [0,1].

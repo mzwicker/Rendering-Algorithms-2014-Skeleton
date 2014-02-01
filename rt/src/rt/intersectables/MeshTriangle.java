@@ -1,7 +1,6 @@
 package rt.intersectables;
 
 import javax.vecmath.*;
-
 import rt.HitRecord;
 import rt.Intersectable;
 import rt.Ray;

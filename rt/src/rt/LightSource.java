@@ -3,7 +3,7 @@ package rt;
 import javax.vecmath.*;
 
 /**
- * Interface for light sources.
+ * Light sources provide illumination for rendered scenes.
  */
 public interface LightSource {
 

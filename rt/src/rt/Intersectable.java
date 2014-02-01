@@ -1,7 +1,7 @@
 package rt;
 
 /**
- * Interface to be implemented by any class supporting ray-surface intersection.
+ * An intersectable supports ray-surface intersection.
  */
 public interface Intersectable {
 

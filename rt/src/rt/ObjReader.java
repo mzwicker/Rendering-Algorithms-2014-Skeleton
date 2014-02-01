@@ -9,7 +9,7 @@ import rt.intersectables.Mesh;
 
 
 /**
- * Reads on .obj file including normals and stores it in a {@link Mesh}.
+ * Reads an .obj file including normals and stores it in a {@link Mesh}.
  */
 public class ObjReader {
 

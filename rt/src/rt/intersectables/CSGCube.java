@@ -6,7 +6,6 @@ import rt.HitRecord;
 import rt.Intersectable;
 import rt.Ray;
 import rt.Spectrum;
-import rt.intersectables.CSGNode.OperationType;
 import rt.materials.Diffuse;
 
 /**
