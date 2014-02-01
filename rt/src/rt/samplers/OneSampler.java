@@ -1,4 +1,6 @@
-package rt;
+package rt.samplers;
+
+import rt.Sampler;
 
 /**
  * Returns always one sample at 0.5 in all dimensions.

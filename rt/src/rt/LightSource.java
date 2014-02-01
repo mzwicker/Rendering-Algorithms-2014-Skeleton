@@ -9,8 +9,8 @@ public interface LightSource {
 
 	public class LightGeometry
 	{
-		Vector3f position;
-		Vector3f normal;
+		public Vector3f position;
+		public Vector3f normal;
 		
 		public LightGeometry(Vector3f position, Vector3f normal)
 		{

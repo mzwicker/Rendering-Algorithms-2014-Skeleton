@@ -1,6 +1,10 @@
-package rt;
+package rt.intersectables;
 
 import java.util.Iterator;
+
+import rt.HitRecord;
+import rt.Intersectable;
+import rt.Ray;
 
 /**
  * A group of {@link Intersectable} objects.

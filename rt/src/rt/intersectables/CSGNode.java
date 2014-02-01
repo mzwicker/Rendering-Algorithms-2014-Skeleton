@@ -1,8 +1,10 @@
-package rt;
+package rt.intersectables;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
+
+import rt.Ray;
 
 /**
  * A CSG node combines two CSG solids using a set operation, such as intersection,

@@ -1,6 +1,13 @@
-package rt;
+package rt.intersectables;
 
 import javax.vecmath.*;
+
+import rt.HitRecord;
+import rt.Intersectable;
+import rt.Material;
+import rt.Ray;
+import rt.Spectrum;
+import rt.materials.Diffuse;
 
 /**
  * A plane that can be intersected by a ray.
@@ -21,7 +28,7 @@ public class Plane implements Intersectable {
 	 */
 	public Plane(Vector3f normal, float d)
 	{
-		material = new DiffuseMaterial(new Spectrum(1.f, 1.f, 1.f));
+		material = new Diffuse(new Spectrum(1.f, 1.f, 1.f));
 		
 		this.normal = new Vector3f(normal);
 		this.normal.normalize();

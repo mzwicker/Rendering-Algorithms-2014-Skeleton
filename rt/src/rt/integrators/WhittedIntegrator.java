@@ -1,7 +1,16 @@
-package rt;
+package rt.integrators;
 
 import java.util.Iterator;
 import javax.vecmath.*;
+import rt.HitRecord;
+import rt.Integrator;
+import rt.Intersectable;
+import rt.LightList;
+import rt.LightSource;
+import rt.Ray;
+import rt.Sampler;
+import rt.Scene;
+import rt.Spectrum;
 import rt.LightSource.LightGeometry;
 
 /**

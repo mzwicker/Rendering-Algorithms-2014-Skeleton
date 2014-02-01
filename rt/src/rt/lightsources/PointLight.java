@@ -1,6 +1,10 @@
-package rt;
+package rt.lightsources;
 
 import javax.vecmath.*;
+
+import rt.LightSource;
+import rt.Spectrum;
+import rt.LightSource.LightGeometry;
 
 /**
  * A point light source.

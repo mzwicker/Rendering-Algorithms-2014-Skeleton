@@ -1,15 +1,19 @@
-package rt;
+package rt.materials;
 
 import javax.vecmath.Vector3f;
+
+import rt.HitRecord;
+import rt.Material;
+import rt.Spectrum;
 
 /**
  * A basic diffuse material.
  */
-public class DiffuseMaterial implements Material {
+public class Diffuse implements Material {
 
 	Spectrum kd;
 	
-	public DiffuseMaterial(Spectrum kd)
+	public Diffuse(Spectrum kd)
 	{
 		this.kd = new Spectrum(kd);
 	}

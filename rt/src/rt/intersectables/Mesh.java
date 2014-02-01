@@ -1,6 +1,11 @@
-package rt;
+package rt.intersectables;
 
 import java.util.Iterator;
+
+import rt.Intersectable;
+import rt.Material;
+import rt.Spectrum;
+import rt.materials.Diffuse;
 
 /**
  * A triangle mesh. The mesh internally stores the triangles using vertex
@@ -41,7 +46,7 @@ public class Mesh extends Aggregate {
 	 */
 	public Mesh(float[] vertices, float[] normals, int[] indices)
 	{
-		material = new DiffuseMaterial(new Spectrum(1.f, 1.f, 1.f));
+		material = new Diffuse(new Spectrum(1.f, 1.f, 1.f));
 		
 		this.vertices = vertices;
 		this.normals = normals;

@@ -1,4 +1,7 @@
-package rt;
+package rt.samplers;
+
+import rt.Sampler;
+import rt.SamplerFactory;
 
 /**
  * Makes a {@link OneSampler}.

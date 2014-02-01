@@ -1,7 +1,11 @@
-package rt;
+package rt.integrators;
+
+import rt.Integrator;
+import rt.IntegratorFactory;
+import rt.Scene;
 
 /**
- * Makes integrators of type {@link rt.MandelbrotIntegrator}.
+ * Makes integrators of type {@link rt.integrators.MandelbrotIntegrator}.
  */
 public class MandelbrotIntegratorFactory implements IntegratorFactory {
 

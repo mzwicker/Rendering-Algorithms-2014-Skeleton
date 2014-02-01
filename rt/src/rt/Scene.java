@@ -1,5 +1,7 @@
 package rt;
 
+import rt.films.BoxFilterFilm;
+
 /**
  * Defines scene properties that need to be made accessible to the renderer. 
  */

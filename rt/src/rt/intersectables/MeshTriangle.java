@@ -1,6 +1,10 @@
-package rt;
+package rt.intersectables;
 
 import javax.vecmath.*;
+
+import rt.HitRecord;
+import rt.Intersectable;
+import rt.Ray;
 
 /**
  * Defines a triangle by referring back to a {@link Mesh}

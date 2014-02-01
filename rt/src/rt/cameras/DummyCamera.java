@@ -1,6 +1,9 @@
-package rt;
+package rt.cameras;
 
 import javax.vecmath.*;
+
+import rt.Camera;
+import rt.Ray;
 
 /**
  * A camera whose rays have x- and y- coordinates in the direction vector in the range [0,1] over the image plane. 

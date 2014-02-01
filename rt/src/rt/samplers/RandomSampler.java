@@ -1,6 +1,8 @@
-package rt;
+package rt.samplers;
 
 import java.util.Random;
+
+import rt.Sampler;
 
 /**
  * Makes uniform random samples in the range [0,1].

@@ -1,4 +1,9 @@
-package rt;
+package rt.integrators;
+
+import rt.Integrator;
+import rt.Ray;
+import rt.Sampler;
+import rt.Spectrum;
 
 /**
  * An educational integrator to demonstrate the {@link rt} framework. 

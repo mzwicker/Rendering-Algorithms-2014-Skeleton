@@ -1,6 +1,10 @@
 package rt.scenes;
 
 import rt.*;
+import rt.cameras.DummyCamera;
+import rt.films.BoxFilterFilm;
+import rt.integrators.MandelbrotIntegratorFactory;
+import rt.samplers.RandomSamplerFactory;
 
 /**
  * Renders a Mandelbrot set. An educational example to show how to use the {@link rt} framework.

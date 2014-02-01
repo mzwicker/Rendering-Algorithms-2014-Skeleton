@@ -1,6 +1,15 @@
 package rt.scenes;
 
 import rt.*;
+import rt.cameras.FixedCamera;
+import rt.films.BoxFilterFilm;
+import rt.integrators.WhittedIntegratorFactory;
+import rt.intersectables.CSGDodecahedron;
+import rt.intersectables.CSGNode;
+import rt.intersectables.CSGPlane;
+import rt.lightsources.PointLight;
+import rt.samplers.OneSamplerFactory;
+
 import javax.vecmath.*;
 
 /**

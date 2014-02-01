@@ -1,4 +1,7 @@
-package rt;
+package rt.films;
+
+import rt.Film;
+import rt.Spectrum;
 
 /**
  * Uses a box filter when accumulating samples on a film. A box filter means

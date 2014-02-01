@@ -1,4 +1,11 @@
-package rt;
+package rt.integrators;
+
+import rt.HitRecord;
+import rt.Integrator;
+import rt.Ray;
+import rt.Sampler;
+import rt.Scene;
+import rt.Spectrum;
 
 /**
  * Use this integrator for debugging purposes. For example, you can simply return a white spectrum

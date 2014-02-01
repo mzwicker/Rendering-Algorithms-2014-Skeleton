@@ -1,6 +1,13 @@
-package rt;
+package rt.intersectables;
 
 import javax.vecmath.Vector3f;
+
+import rt.HitRecord;
+import rt.Material;
+import rt.Ray;
+import rt.Spectrum;
+import rt.materials.Diffuse;
+
 import java.util.ArrayList;
 
 /**
@@ -26,7 +33,7 @@ public class CSGPlane extends CSGSolid {
 		this.normal.normalize();
 		this.d = d;
 		
-		material = new DiffuseMaterial(new Spectrum(1.f, 1.f, 1.f));
+		material = new Diffuse(new Spectrum(1.f, 1.f, 1.f));
 	}		
 	
 	public ArrayList<IntervalBoundary> getIntervalBoundaries(Ray r)

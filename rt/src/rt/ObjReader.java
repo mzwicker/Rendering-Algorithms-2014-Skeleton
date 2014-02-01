@@ -2,7 +2,10 @@ package rt;
 
 import java.io.*;
 import java.util.ArrayList;
+
 import javax.vecmath.*;
+
+import rt.intersectables.Mesh;
 
 
 /**

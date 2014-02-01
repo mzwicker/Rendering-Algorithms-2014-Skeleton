@@ -1,5 +1,8 @@
-package rt;
+package rt.cameras;
 import javax.vecmath.*;
+
+import rt.Camera;
+import rt.Ray;
 
 public class PinholeCamera implements Camera {
 

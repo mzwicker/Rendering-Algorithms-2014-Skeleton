@@ -1,8 +1,13 @@
-package rt;
+package rt.intersectables;
 
 import java.util.ArrayList;
 
 import javax.vecmath.*;
+
+import rt.Material;
+import rt.Ray;
+import rt.Spectrum;
+import rt.materials.Diffuse;
 
 /**
  * A dodecahedron implemented using planes and CSG. The dodecahedron has its center at [0,0,0]. 
@@ -21,7 +26,7 @@ public class CSGDodecahedron extends CSGSolid {
 	public CSGDodecahedron()
 	{
 		Vector3f normal;
-		Material diffuseMaterial = new DiffuseMaterial(new Spectrum(1.f, 0.f, 0.f));
+		Material diffuseMaterial = new Diffuse(new Spectrum(1.f, 0.f, 0.f));
 		
 		// Make CSG planes
 		CSGPlane planes[] = new CSGPlane[12];

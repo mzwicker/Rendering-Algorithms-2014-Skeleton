@@ -1,6 +1,10 @@
-package rt;
+package rt.intersectables;
 
 import java.util.ArrayList;
+
+import rt.HitRecord;
+import rt.Intersectable;
+import rt.Ray;
 
 /**
  * A CSG solid object that can be intersected by a ray. If a CSG object is intersected
