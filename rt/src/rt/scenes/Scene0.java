@@ -14,7 +14,7 @@ import rt.tonemappers.ClampTonemapper;
 import javax.vecmath.*;
 
 /**
- * Ray traces a cube. An educational example to show how to use the {@link rt} framework.
+ * Ray traces a simple scene. An educational example to show how to use the {@link rt} framework.
  */
 public class Scene0 extends Scene {
 		
