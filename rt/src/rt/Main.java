@@ -81,14 +81,10 @@ public class Main {
 						for(int k=0; k<samples.length; k++)
 						{							
 							// Make ray
-							Ray r = task.scene.getCamera().makeWorldSpaceRay(i, j, k, samples);
-						
-							Spectrum s;
-							if(j>260)
-								s = new Spectrum(1.f,0.f,0.f);
+							Ray r = task.scene.getCamera().makeWorldSpaceRay(i, j, k, samples);					
 							
 							// Evaluate ray
-							s = task.integrator.integrate(r);							
+							Spectrum s = task.integrator.integrate(r);							
 							
 							// Write to film
 							task.scene.getFilm().addSample((double)i+(double)samples[k][0], (double)j+(double)samples[k][1], s);											
