@@ -16,12 +16,12 @@ import rt.LightSource.LightGeometry;
 /**
  * Integrator for Whitted style ray tracing. This is a basic version that needs to be extended!
  */
-public class WhittedIntegrator implements Integrator {
+public class PointLightIntegrator implements Integrator {
 
 	LightList lightList;
 	Intersectable root;
 	
-	public WhittedIntegrator(Scene scene)
+	public PointLightIntegrator(Scene scene)
 	{
 		this.lightList = scene.getLightList();
 		this.root = scene.getIntersectable();

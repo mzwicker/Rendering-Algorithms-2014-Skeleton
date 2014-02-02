@@ -5,12 +5,12 @@ import rt.IntegratorFactory;
 import rt.Scene;
 
 /**
- * Makes a {@link WhittedIntegrator}.
+ * Makes a {@link PointLightIntegrator}.
  */
-public class WhittedIntegratorFactory implements IntegratorFactory {
+public class PointLightIntegratorFactory implements IntegratorFactory {
 
 	public Integrator make(Scene scene) {
-		return new WhittedIntegrator(scene);
+		return new PointLightIntegrator(scene);
 	}
 
 	public void prepareScene(Scene scene) {

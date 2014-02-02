@@ -3,7 +3,7 @@ package rt.scenes;
 import rt.*;
 import rt.cameras.FixedCamera;
 import rt.films.BoxFilterFilm;
-import rt.integrators.WhittedIntegratorFactory;
+import rt.integrators.PointLightIntegratorFactory;
 import rt.intersectables.CSGDodecahedron;
 import rt.intersectables.CSGNode;
 import rt.intersectables.CSGPlane;
@@ -36,7 +36,7 @@ public class Scene0 extends Scene {
 		tonemapper = new ClampTonemapper();
 		
 		// Specify which integrator and sampler to use
-		integratorFactory = new WhittedIntegratorFactory();
+		integratorFactory = new PointLightIntegratorFactory();
 		samplerFactory = new OneSamplerFactory();
 		
 		// Define the root object (an intersectable) of the scene
