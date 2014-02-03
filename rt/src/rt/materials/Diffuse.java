@@ -5,6 +5,7 @@ import javax.vecmath.Vector3f;
 import rt.HitRecord;
 import rt.Material;
 import rt.Spectrum;
+import rt.Material.ShadingSample;
 
 /**
  * A basic diffuse material.
@@ -29,4 +30,29 @@ public class Diffuse implements Material {
 		return kd;
 	}
 
+	public boolean hasSpecularReflection()
+	{
+		return false;
+	}
+	
+	public ShadingSample evaluateSpecularReflection(HitRecord hitRecord)
+	{
+		return null;
+	}
+	public boolean hasSpecularRefraction()
+	{
+		return false;
+	}
+
+	public ShadingSample evaluateSpecularRefraction(HitRecord hitRecord)
+	{
+		return null;
+	}
+	
+	// To be implemented!
+	public ShadingSample getShadingSample(HitRecord hitRecord, float[] sample)
+	{
+		return null;
+	}
+	
 }
