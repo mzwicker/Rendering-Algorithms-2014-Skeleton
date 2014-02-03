@@ -36,7 +36,7 @@ public abstract class Scene {
 		return camera;
 	}
 
-	public BoxFilterFilm getFilm() {
+	public Film getFilm() {
 		return film;
 	}
 

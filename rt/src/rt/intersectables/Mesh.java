@@ -26,8 +26,8 @@ public class Mesh extends Aggregate {
 	
 	/**
 	 * Index array. Each triangle is defined by three consecutive
-	 * indices in this array. The indices refer to the {@link vertices} 
-	 * and {@link normals} arrays that store vertex and normal coordinates.
+	 * indices in this array. The indices refer to the {@link Mesh#vertices} 
+	 * and {@link Mesh#normals} arrays that store vertex and normal coordinates.
 	 */
 	public int[] indices;
 	

@@ -9,8 +9,8 @@ import java.awt.image.*;
 import java.io.*;
 
 /**
- * The main rendering loop. Provides multi-threading support. The scene to be rendered
- * is hard-coded here, so you can easily change it. The scene contains 
+ * The main rendering loop. Provides multi-threading support. The {@link Main#scene} to be rendered
+ * is hard-coded here, so you can easily change it. The {@link Main#scene} contains 
  * all configuration information for the renderer.
  */
 public class Main {
