@@ -7,32 +7,31 @@ import javax.vecmath.*;
  */
 public interface LightSource {
 
-	public class LightGeometry
+	/**
+	 * Stores all information related to a light sample.
+	 */
+	public class LightSample
 	{
 		public Vector3f position;
 		public Vector3f normal;
+		public Spectrum emission;
+		public float p;
 		
-		public LightGeometry(Vector3f position, Vector3f normal)
+		public LightSample(Vector3f position, Vector3f normal, Spectrum emission, float p)
 		{
 			this.position = position;
 			this.normal = normal;
+			this.emission = emission;
+			this.p = p;
 		}
 		
 	}
-	
-	/**
-	 * Return the emission spectrum for a light source. 
-	 * 
-	 * @param s random sample to determine the location on the light source
-	 * @return the emission spectrum
-	 */
-	public Spectrum getEmission(float[] s);
-	
+		
 	/**
 	 * Return the position and normal on a light source, given a random sample location.
 	 * 
 	 * @param s random sample to determine the location on the light source
 	 * @return the position and normal on the light source in world coordinates
 	 */
-	public LightGeometry getGeometry(float[] s);
+	public LightSample getLightSample(float[] s);
 }

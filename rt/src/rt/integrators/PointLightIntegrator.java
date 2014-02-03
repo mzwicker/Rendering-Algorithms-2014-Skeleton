@@ -11,7 +11,7 @@ import rt.Ray;
 import rt.Sampler;
 import rt.Scene;
 import rt.Spectrum;
-import rt.LightSource.LightGeometry;
+import rt.LightSource.LightSample;
 
 /**
  * Integrator for Whitted style ray tracing. This is a basic version that needs to be extended!
@@ -47,8 +47,8 @@ public class PointLightIntegrator implements Integrator {
 				LightSource lightSource = it.next();
 				
 				// Make direction from hit point to light source position				
-				LightGeometry lightGeo = lightSource.getGeometry(null);
-				Vector3f lightPos = lightGeo.position;
+				LightSample lightSample = lightSource.getLightSample(null);
+				Vector3f lightPos = lightSample.position;
 				Vector3f lightDir = new Vector3f(lightPos);
 				lightDir.sub(hitRecord.position);
 				float d = lightDir.length();
@@ -61,7 +61,7 @@ public class PointLightIntegrator implements Integrator {
 				Spectrum s = new Spectrum(brdfValue);
 				
 				// Multiply with emission
-				s.mult(lightSource.getEmission(null));
+				s.mult(lightSample.emission);
 				
 				// Multiply with cosine of surface normal and incident direction
 				float ndotl = hitRecord.normal.dot(lightDir);

@@ -19,17 +19,13 @@ public class PointLight implements LightSource {
 		this.emission = new Spectrum(emission);
 	}
 	
-	public Spectrum getEmission(float[] s) {
-		return emission;
-	}
-
 	/**
 	 * Get light source position and normal for location on the
 	 * light source given by a sample. Always returns null for 
 	 * the light source normal.
 	 */
-	public LightGeometry getGeometry(float[] s) {
-		return new LightGeometry(position, null);
+	public LightSample getLightSample(float[] s) {
+		return new LightSample(position, null, emission, 1.f);
 	}
 
 }
