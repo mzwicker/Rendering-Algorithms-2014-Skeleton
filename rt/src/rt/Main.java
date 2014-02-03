@@ -10,14 +10,19 @@ import java.io.*;
 
 /**
  * The main rendering loop. Provides multi-threading support. The scene to be rendered
- * is hard-coded here, but you can easily change it. The scene contains all configuration
- * information for the renderer.
+ * is hard-coded here, so you can easily change it. The scene contains 
+ * all configuration information for the renderer.
  */
 public class Main {
 
+	/** 
+	 * The scene to be rendered.
+	 */
+	public static Scene scene = new Mandelbrot();
+
 	static LinkedList<RenderTask> queue;
 	static Counter tasksLeft;
-	
+		
 	static public class Counter
 	{
 		public Counter(int n)
@@ -105,10 +110,7 @@ public class Main {
 	{			
 		int taskSize = 32;	// Each task renders a square image block of this size
 		int nThreads = 8;	// Number of threads to be used for rendering
-		
-		// Scene to be rendered
-		Scene scene = new Scene0();
-		
+				
 		int width = scene.getFilm().getWidth();
 		int height = scene.getFilm().getHeight();
 

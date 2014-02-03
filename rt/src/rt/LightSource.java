@@ -12,9 +12,24 @@ public interface LightSource {
 	 */
 	public class LightSample
 	{
+		/**
+		 * The position on the light source that was sampled.
+		 */
 		public Vector3f position;
+		
+		/**
+		 * The normal on the light source that was sampled.
+		 */
 		public Vector3f normal;
+		
+		/**
+		 * The emission on the light source that was sampled.
+		 */
 		public Spectrum emission;
+		
+		/**
+		 * The probability density of the sample.
+		 */
 		public float p;
 		
 		public LightSample(Vector3f position, Vector3f normal, Spectrum emission, float p)
@@ -28,10 +43,10 @@ public interface LightSource {
 	}
 		
 	/**
-	 * Return the position and normal on a light source, given a random sample location.
+	 * Get a {@link LightSample} from this light source.
 	 * 
 	 * @param s random sample to determine the location on the light source
-	 * @return the position and normal on the light source in world coordinates
+	 * @return the light samples
 	 */
 	public LightSample getLightSample(float[] s);
 }

@@ -21,7 +21,7 @@ public class Scene0 extends Scene {
 	public Scene0()
 	{
 		// Output file name
-		outputFilename = new String("Scene0");
+		outputFilename = new String("..//output images//Scene0");
 		
 		// Image width and height in pixels
 		width = 512;

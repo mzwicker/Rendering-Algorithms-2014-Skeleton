@@ -20,9 +20,9 @@ public class PointLight implements LightSource {
 	}
 	
 	/**
-	 * Get light source position and normal for location on the
-	 * light source given by a sample. Always returns null for 
-	 * the light source normal.
+	 * Get a {@link rt.LightSource.LightSample} from this point light. Since this
+	 * is a point light, always return null for the light source normal,
+	 * and 1 for the probability density.
 	 */
 	public LightSample getLightSample(float[] s) {
 		return new LightSample(position, null, emission, 1.f);
