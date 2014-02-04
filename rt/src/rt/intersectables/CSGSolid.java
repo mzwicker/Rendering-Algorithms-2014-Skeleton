@@ -1,7 +1,7 @@
 package rt.intersectables;
 
 import java.util.ArrayList;
-
+import java.util.Iterator;
 import rt.HitRecord;
 import rt.Intersectable;
 import rt.Ray;
@@ -45,19 +45,21 @@ public abstract class CSGSolid implements Intersectable {
 		// Get the intersection interval boundaries
 		ArrayList<IntervalBoundary> intervalBoundaries = getIntervalBoundaries(r);
 		
-		// Return the first hit, make sure the hit is along the positive ray direction
-		if(intervalBoundaries.size() > 0)
+		// Return the first hit in front of the camera, that is, make sure 
+		// the hit is along the positive ray direction
+		Iterator<IntervalBoundary> it = intervalBoundaries.iterator();
+		while(it.hasNext())
 		{
-			HitRecord firstHit = intervalBoundaries.get(0).hitRecord;
-		
+			HitRecord firstHit = it.next().hitRecord;
+			
 			if(firstHit!=null && firstHit.t>0.f)
 			{		
 				firstHit.intersectable = this;
-				return firstHit;
-			} else
-				return null;
-		} else
-			return null;
+				return firstHit;			
+			}
+		}
+				
+		return null;
 	}
 		
 	/**
@@ -67,5 +69,4 @@ public abstract class CSGSolid implements Intersectable {
 	 * @return boundaries of intersection intervals 
 	 */
 	abstract ArrayList<IntervalBoundary> getIntervalBoundaries(Ray r);
-
 }

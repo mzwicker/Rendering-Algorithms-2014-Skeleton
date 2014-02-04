@@ -42,26 +42,12 @@ public class CSGNode extends CSGSolid {
 		while(it.hasNext())
 		{
 			IntervalBoundary b = it.next();
-			// In case an interval end needs to be shaded, we need the 
-			// negated normal and incident direction (to shade the "inside" surface)!
-			if(b.type == BoundaryType.END && b.hitRecord!=null) 
-			{
-				b.hitRecord.normal.negate();
-				b.hitRecord.w.negate();
-			}
 			b.belongsTo = BelongsTo.LEFT;
 		}
 		it = rightIntervals.iterator();
 		while(it.hasNext())
 		{
 			IntervalBoundary b = it.next();
-			// In case an interval end needs to be shaded, we need the 
-			// negated normal and incident direction (to shade the "inside" surface)!
-			if(b.type == BoundaryType.END && b.hitRecord!=null)
-			{
-				b.hitRecord.normal.negate();
-				b.hitRecord.w.negate();
-			}
 			b.belongsTo = BelongsTo.RIGHT;			
 		}
 
@@ -107,11 +93,18 @@ public class CSGNode extends CSGSolid {
 					break;
 				}
 				case SUBTRACT:
-				{
+				{					
 					if(inLeft && !inRight)
 						b.type = BoundaryType.START;
 					else
 						b.type = BoundaryType.END;
+					
+					// In a subtract operation, the subtracted solid is turned inside out, 
+					// or it "switches sign", so we need to flip its normal direction
+					if(b.belongsTo == BelongsTo.RIGHT && b.hitRecord!=null)
+					{
+						b.hitRecord.normal.negate();
+					}
 					break;
 				}
 				case ADD:
