@@ -18,6 +18,9 @@ import rt.materials.XYZGrid;
 import rt.samplers.*;
 import rt.tonemappers.ClampTonemapper;
 
+/**
+ * Test scene for CSG objects and refraction.
+ */
 public class CSGScene extends Scene {
 	
 	public CSGScene()

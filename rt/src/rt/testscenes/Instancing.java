@@ -17,6 +17,9 @@ import javax.vecmath.Vector3f;
 
 import org.omg.CORBA.TRANSACTION_MODE;
 
+/**
+ * Test scene for instancing and rendering triangle meshes.
+ */
 public class Instancing extends Scene {
 
 	public IntersectableList objects;

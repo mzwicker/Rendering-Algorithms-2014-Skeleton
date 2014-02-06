@@ -1,4 +1,5 @@
 rt
+rt.basicscenes
 rt.cameras
 rt.films
 rt.integrators
@@ -6,5 +7,5 @@ rt.intersectables
 rt.lightsources
 rt.materials
 rt.samplers
-rt.scenes
+rt.testscenes
 rt.tonemappers

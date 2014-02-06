@@ -13,7 +13,7 @@ import rt.tonemappers.ClampTonemapper;
 import javax.vecmath.*;
 
 /**
- * Ray traces a simple scene. An educational example to show how to use the {@link rt} framework.
+ * Test scene for refractive objects, renders a sphere in front of a planar background.
  */
 public class RefractiveSphere extends Scene {
 		

@@ -11,6 +11,9 @@ import rt.lightsources.*;
 import rt.samplers.*;
 import rt.tonemappers.*;
 
+/**
+ * Simple scene using a Blinn material.
+ */
 public class Blinn extends Scene {
 
 	public Blinn()

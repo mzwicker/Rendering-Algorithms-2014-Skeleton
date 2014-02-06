@@ -11,6 +11,9 @@ import rt.lightsources.*;
 import rt.samplers.*;
 import rt.tonemappers.*;
 
+/**
+ * Test scene for pinhole camera specifications.
+ */
 public class Camera extends Scene {
 
 	public Camera()
