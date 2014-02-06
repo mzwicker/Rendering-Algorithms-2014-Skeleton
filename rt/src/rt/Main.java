@@ -18,7 +18,7 @@ public class Main {
 	/** 
 	 * The scene to be rendered.
 	 */
-	public static Scene scene = new Mandelbrot();
+	public static Scene scene = new Dodecahedron();
 
 	static LinkedList<RenderTask> queue;
 	static Counter tasksLeft;

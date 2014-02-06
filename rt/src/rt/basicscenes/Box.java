@@ -19,7 +19,7 @@ public class Box extends Scene {
 	public Box()
 	{
 		// Output file name
-		outputFilename = new String("..//basicscenes output//Box");
+		outputFilename = new String("..//output//basicscenes//Box");
 		
 		// Image width and height in pixels
 		width = 512;
