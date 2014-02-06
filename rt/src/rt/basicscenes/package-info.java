@@ -1,4 +1,4 @@
 /**
  * Implementations of the abstract class {@link rt.Scene}.
  */
-package rt.scenes;
+package rt.basicscenes;

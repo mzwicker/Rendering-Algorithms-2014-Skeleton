@@ -1,4 +1,4 @@
-package rt.scenes;
+package rt.basicscenes;
 
 import rt.*;
 import rt.cameras.DummyCamera;
@@ -15,7 +15,7 @@ public final class Mandelbrot extends Scene {
 	public Mandelbrot()
 	{
 		// Output file name
-		outputFilename = new String("..//output images//Mandelbrot");
+		outputFilename = new String("..//basicscenes output//Mandelbrot");
 		
 		// Width and height of output image in pixels
 		width = 1024;

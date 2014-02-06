@@ -2,7 +2,7 @@ package rt;
 
 import javax.imageio.ImageIO;
 
-import rt.scenes.*;
+import rt.basicscenes.*;
 
 import java.util.*;
 import java.awt.image.*;
@@ -18,7 +18,7 @@ public class Main {
 	/** 
 	 * The scene to be rendered.
 	 */
-	public static Scene scene = new Scene0();
+	public static Scene scene = new Mandelbrot();
 
 	static LinkedList<RenderTask> queue;
 	static Counter tasksLeft;

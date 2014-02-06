@@ -1,4 +1,4 @@
-package rt.scenes;
+package rt.basicscenes;
 
 import rt.*;
 import rt.cameras.FixedCamera;
@@ -16,12 +16,12 @@ import javax.vecmath.*;
 /**
  * Ray traces a simple scene. An educational example to show how to use the {@link rt} framework.
  */
-public class Scene0 extends Scene {
+public class Dodecahedron extends Scene {
 		
-	public Scene0()
+	public Dodecahedron()
 	{
 		// Output file name
-		outputFilename = new String("..//output images//Scene0");
+		outputFilename = new String("..//basicscenes output//Dodecahedron");
 		
 		// Image width and height in pixels
 		width = 512;

@@ -8,7 +8,7 @@ import rt.Ray;
 /**
  * A camera whose rays have x- and y- coordinates in the direction vector in the range [0,1] over the image plane. 
  * This is usually not useful for rendering. The class is provided for educational purposes and used in the 
- * {@link rt.scenes.Mandelbrot} scene.
+ * {@link rt.basicscenes.Mandelbrot} scene.
  */
 public class DummyCamera implements Camera {
 
