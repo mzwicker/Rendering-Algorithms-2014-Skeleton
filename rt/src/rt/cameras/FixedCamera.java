@@ -66,17 +66,19 @@ public class FixedCamera implements Camera {
 	}
 
 	/**
-	 * Make a world space ray.
+	 * Make a world space ray. The method receives a sample that 
+	 * the camera uses to generate the ray. It uses the first two
+	 * sample dimensions to sample a location in the current 
+	 * pixel. The samples are assumed to be in the range [0,1].
 	 * 
 	 * @param i column index of pixel through which ray goes (0 = left boundary)
 	 * @param j row index of pixel through which ray goes (0 = bottom boundary)
-	 * @param k index of sample to use
-	 * @param samples array of samples
+	 * @param sample random sample that the camera can use to generate a ray   
 	 */
-	public Ray makeWorldSpaceRay(int i, int j, int k, float[][] samples) {
+	public Ray makeWorldSpaceRay(int i, int j, float[] sample) {
 		// Make point on image plane in viewport coordinates, that is range [0,width-1] x [0,height-1]
 		// The assumption is that pixel [i,j] is the square [i,i+1] x [j,j+1] in viewport coordinates
-		Vector4f d = new Vector4f((float)i+samples[k][0],(float)j+samples[k][1],-1.f,1.f);
+		Vector4f d = new Vector4f((float)i+sample[0],(float)j+sample[1],-1.f,1.f);
 		
 		// Transform it back to world coordinates
 		m.transform(d);

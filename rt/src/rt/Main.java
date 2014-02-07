@@ -18,7 +18,7 @@ public class Main {
 	/** 
 	 * The scene to be rendered.
 	 */
-	public static Scene scene = new Dodecahedron();
+	public static Scene scene = new Box();
 
 	static LinkedList<RenderTask> queue;
 	static Counter tasksLeft;
@@ -86,7 +86,7 @@ public class Main {
 						for(int k=0; k<samples.length; k++)
 						{							
 							// Make ray
-							Ray r = task.scene.getCamera().makeWorldSpaceRay(i, j, k, samples);					
+							Ray r = task.scene.getCamera().makeWorldSpaceRay(i, j, samples[k]);					
 							
 							// Evaluate ray
 							Spectrum s = task.integrator.integrate(r);							

@@ -14,9 +14,18 @@ public class Diffuse implements Material {
 
 	Spectrum kd;
 	
+	/**
+	 * Note that the parameter value {@param kd} is the diffuse reflectance,
+	 * which should be in the range [0,1], a value of 1 meaning all light
+	 * is reflected (diffusely), and none is absorbed. The diffuse BRDF
+	 * corresponding to {@param kd} is actually {@param kd}/pi.
+	 * @param kd
+	 */
 	public Diffuse(Spectrum kd)
 	{
 		this.kd = new Spectrum(kd);
+		// Normalize
+		this.kd.mult(1/(float)Math.PI);
 	}
 
 	/**

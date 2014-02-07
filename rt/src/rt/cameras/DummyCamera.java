@@ -24,9 +24,9 @@ public class DummyCamera implements Camera {
 	/**
 	 * Make a ray whose x- and y- coordinates in the direction vector are in the range [0,1] over the image plane.
 	 */
-	public Ray makeWorldSpaceRay(int i, int j, int k, float samples[][]) {
-		float x = ((float)i+samples[k][0]) / (float)width;
-		float y = ((float)j+samples[k][1]) / (float)height;
+	public Ray makeWorldSpaceRay(int i, int j, float sample[]) {
+		float x = ((float)i+sample[0]) / (float)width;
+		float y = ((float)j+sample[1]) / (float)height;
 		return new Ray(new Vector3f(0.f,0.f,0.f), new Vector3f(x, y, 1.f));
 	}
 

@@ -45,7 +45,7 @@ public class Dodecahedron extends Scene {
 		root = new CSGNode(n1, new CSGPlane(new Vector3f(0.f, 0.f, 1.f), 1.f), CSGNode.OperationType.ADD); 
 		
 		// Light sources
-		LightSource pointLight = new PointLight(new Vector3f(0.f, 0.f, 3.f), new Spectrum(4.f, 4.f, 4.f));
+		LightSource pointLight = new PointLight(new Vector3f(0.f, 0.f, 3.f), new Spectrum(15.f, 15.f, 15.f));
 		lightList = new LightList();
 		lightList.add(pointLight);
 	}

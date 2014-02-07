@@ -8,14 +8,15 @@ public interface Camera {
 
 	/**
 	 * Given a ray in image space, make a ray in world space according 
-	 * to the camera specifications.
+	 * to the camera specifications. The method receives a sample that 
+	 * the camera can use to generate the ray. Typically the first two
+	 * sample dimensions are used to sample a location in the current 
+	 * pixel. The samples are assumed to be in the range [0,1].
 	 * 
 	 * @param i pixel column index
 	 * @param j pixel row index
-	 * @param k sample to be used to make the ray
-	 * @param samples array of n-dimensional samples. Use the first two dimensions 
-	 * 		to sample the image plane. The samples are assumed to be in the range [0,1].   
+	 * @param sample random sample that the camera can use to generate a ray   
 	 * @return the ray in world coordinates
 	 */
-	public Ray makeWorldSpaceRay(int i, int j, int k, float samples[][]);
+	public Ray makeWorldSpaceRay(int i, int j, float sample[]);
 }
