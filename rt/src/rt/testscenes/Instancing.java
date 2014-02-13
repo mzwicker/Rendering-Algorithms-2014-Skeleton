@@ -29,7 +29,7 @@ public class Instancing extends Scene {
 	 */
 	public Instancing()
 	{	
-		outputFilename = new String("..//output//testscenes//Instancing");
+		outputFilename = new String("../output/testscenes/Instancing");
 		
 		// Specify integrator to be used
 		integratorFactory = new WhittedIntegratorFactory();

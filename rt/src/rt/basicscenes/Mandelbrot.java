@@ -15,7 +15,7 @@ public final class Mandelbrot extends Scene {
 	public Mandelbrot()
 	{
 		// Output file name
-		outputFilename = new String("..//output//basicscenes//Mandelbrot");
+		outputFilename = new String("../output/basicscenes/Mandelbrot");
 		
 		// Width and height of output image in pixels
 		width = 1024;

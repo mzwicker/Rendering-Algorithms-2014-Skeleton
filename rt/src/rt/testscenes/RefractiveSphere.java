@@ -20,7 +20,7 @@ public class RefractiveSphere extends Scene {
 	public RefractiveSphere()
 	{
 		// Output file name
-		outputFilename = new String("..//output//testscenes//RefractiveSphere");
+		outputFilename = new String("../output/testscenes/RefractiveSphere");
 		
 		// Image width and height in pixels
 		width = 512;
