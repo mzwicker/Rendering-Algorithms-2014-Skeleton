@@ -1,7 +1,5 @@
 package rt;
 
-import rt.films.BoxFilterFilm;
-
 /**
  * Defines scene properties that need to be made accessible to the renderer. 
  */
@@ -12,7 +10,7 @@ public abstract class Scene {
 	protected int width;
 	protected int height;
 	protected Camera camera;
-	protected BoxFilterFilm film;
+	protected Film film;
 	protected IntegratorFactory integratorFactory;
 	protected SamplerFactory samplerFactory;
 	protected Tonemapper tonemapper;
