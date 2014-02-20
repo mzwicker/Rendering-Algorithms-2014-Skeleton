@@ -19,7 +19,7 @@ public class Blinn extends Scene {
 	public Blinn()
 	{
 		// Output file name
-		outputFilename = new String("..//output//testscenes//Blinn");
+		outputFilename = new String("../output/testscenes/Blinn");
 		
 		// Image width and height in pixels
 		width = 512;

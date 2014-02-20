@@ -21,7 +21,7 @@ public class Dodecahedron extends Scene {
 	public Dodecahedron()
 	{
 		// Output file name
-		outputFilename = new String("..//output//basicscenes//Dodecahedron");
+		outputFilename = new String("../output/basicscenes/Dodecahedron");
 		
 		// Image width and height in pixels
 		width = 512;

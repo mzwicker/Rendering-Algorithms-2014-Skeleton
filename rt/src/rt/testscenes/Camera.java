@@ -19,7 +19,7 @@ public class Camera extends Scene {
 	public Camera()
 	{
 		// Output file name
-		outputFilename = new String("..//output//testscenes//Camera");
+		outputFilename = new String("../output/testscenes/Camera");
 		
 		// Image width and height in pixels
 		width = 1280;
