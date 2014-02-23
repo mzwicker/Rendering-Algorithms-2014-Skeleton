@@ -56,7 +56,7 @@ public class Camera extends Scene {
 		root = new CSGNode(n1, n3, CSGNode.OperationType.ADD); 
 		
 		// Light sources
-		LightSource pointLight = new PointLight(new Vector3f(0.f, 0.f, 3.f), new Spectrum(2.f, 2.f, 2.f));
+		LightGeometry pointLight = new PointLight(new Vector3f(0.f, 0.f, 3.f), new Spectrum(10.f, 10.f, 10.f));
 		lightList = new LightList();
 		lightList.add(pointLight);
 	}

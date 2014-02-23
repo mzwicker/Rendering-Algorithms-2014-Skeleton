@@ -5,7 +5,7 @@ import rt.cameras.*;
 import rt.films.BoxFilterFilm;
 import rt.integrators.*;
 import rt.intersectables.*;
-import rt.lightsources.PointLight;
+import rt.lightsources.*;
 import rt.samplers.*;
 import rt.materials.*;
 import rt.tonemappers.ClampTonemapper;
@@ -20,7 +20,7 @@ public class RefractiveSphere extends Scene {
 	public RefractiveSphere()
 	{
 		// Output file name
-		outputFilename = new String("..//output//testscenes//RefractiveSphere");
+		outputFilename = new String("../output/testscenes/RefractiveSphere");
 		
 		// Image width and height in pixels
 		width = 512;
@@ -43,7 +43,7 @@ public class RefractiveSphere extends Scene {
 		integratorFactory = new WhittedIntegratorFactory();
 		samplerFactory = new RandomSamplerFactory();		
 		
-		Material refractive = new Refractive(1.01f);
+		Material refractive = new Refractive(1.3f);
 
 		
 		// Ground and back plane
@@ -69,10 +69,10 @@ public class RefractiveSphere extends Scene {
 		// Light sources
 		Vector3f lightPos = new Vector3f(eye);
 		lightPos.add(new Vector3f(-1.f, 0.f, 0.f));
-		LightSource pointLight1 = new PointLight(lightPos, new Spectrum(14.f, 14.f, 14.f));
+		LightGeometry pointLight1 = new PointLight(lightPos, new Spectrum(14.f, 14.f, 14.f));
 		lightPos.add(new Vector3f(2.f, 0.f, 0.f));
-		LightSource pointLight2 = new PointLight(lightPos, new Spectrum(14.f, 14.f, 14.f));
-		LightSource pointLight3 = new PointLight(new Vector3f(0.f, 7.f, 0.f), new Spectrum(14.f, 14.f, 14.f));
+		LightGeometry pointLight2 = new PointLight(lightPos, new Spectrum(14.f, 14.f, 14.f));
+		LightGeometry pointLight3 = new PointLight(new Vector3f(0.f, 7.f, 0.f), new Spectrum(14.f, 14.f, 14.f));
 		lightList = new LightList();
 		lightList.add(pointLight1);
 		lightList.add(pointLight2);

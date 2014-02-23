@@ -1,31 +1,42 @@
 package rt.lightsources;
 
-import javax.vecmath.*;
+import java.util.Random;
+import javax.vecmath.Vector3f;
+import rt.*;
+import rt.materials.PointLightMaterial;
 
-import rt.LightSource;
-import rt.Spectrum;
-
-/**
- * A point light source.
- */
-public class PointLight implements LightSource {
+public class PointLight implements LightGeometry {
 
 	Vector3f position;
-	Spectrum emission;
+	PointLightMaterial pointLightMaterial;
+	Random rand;
 	
 	public PointLight(Vector3f position, Spectrum emission)
 	{
 		this.position = new Vector3f(position);
-		this.emission = new Spectrum(emission);
+		this.rand = new Random();
+		pointLightMaterial = new PointLightMaterial(emission);
 	}
 	
 	/**
-	 * Get a {@link rt.LightSource.LightSample} from this point light. Since this
-	 * is a point light, always return null for the light source normal,
-	 * and 1 for the probability density.
+	 * A ray never hit a point.
 	 */
-	public LightSample getLightSample(float[] s) {
-		return new LightSample(position, null, emission, 1.f);
+	public HitRecord intersect(Ray r) {
+		return null;
+	}
+
+	/**
+	 * Sample a point on the light geometry. On a point light,
+	 * always return light position with probability one. 
+	 * Set normal to null.
+	 */
+	public HitRecord sample(float[] s) {
+		HitRecord hitRecord = new HitRecord();
+		hitRecord.position = new Vector3f(position);
+		hitRecord.material = pointLightMaterial;
+		hitRecord.normal = null;
+		hitRecord.p = 1.f;
+		return hitRecord;
 	}
 
 }

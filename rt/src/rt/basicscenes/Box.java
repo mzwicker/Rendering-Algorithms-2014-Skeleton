@@ -2,10 +2,7 @@ package rt.basicscenes;
 
 import javax.vecmath.Vector3f;
 
-import rt.LightList;
-import rt.LightSource;
-import rt.Scene;
-import rt.Spectrum;
+import rt.*;
 import rt.cameras.*;
 import rt.films.*;
 import rt.integrators.*;
@@ -19,7 +16,7 @@ public class Box extends Scene {
 	public Box()
 	{
 		// Output file name
-		outputFilename = new String("..//output//basicscenes//Box");
+		outputFilename = new String("../output/basicscenes/Box");
 		
 		// Image width and height in pixels
 		width = 512;
@@ -51,7 +48,7 @@ public class Box extends Scene {
 		root = new CSGNode(n1, n3, CSGNode.OperationType.ADD); 
 		
 		// Light sources
-		LightSource pointLight = new PointLight(new Vector3f(0.f, 0.f, 3.f), new Spectrum(10.f, 10.f, 10.f));
+		LightGeometry pointLight = new PointLight(new Vector3f(0.f, 0.f, 3.f), new Spectrum(10.f, 10.f, 10.f));
 		lightList = new LightList();
 		lightList.add(pointLight);
 	}

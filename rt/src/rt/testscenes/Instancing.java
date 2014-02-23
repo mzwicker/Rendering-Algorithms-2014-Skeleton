@@ -29,10 +29,10 @@ public class Instancing extends Scene {
 	 */
 	public Instancing()
 	{	
-		outputFilename = new String("..//output//testscenes//Instancing");
+		outputFilename = new String("../output/testscenes/Instancing");
 		
 		// Specify integrator to be used
-		integratorFactory = new WhittedIntegratorFactory();
+		integratorFactory = new PointLightIntegratorFactory();
 		
 		// Specify pixel sampler to be used
 		samplerFactory = new OneSamplerFactory();
@@ -108,10 +108,10 @@ public class Instancing extends Scene {
 		// List of lights
 		lightList = new LightList();
 		
-		PointLight light = new PointLight(new Vector3f(0.f,0.8f,0.8f), new Spectrum(1.f, 1.f, 1.f));
+		LightGeometry light = new PointLight(new Vector3f(0.f,0.8f,0.8f), new Spectrum(3.f, 3.f, 3.f));
 		lightList.add(light);
 		
-		light = new PointLight(new Vector3f(-0.8f,0.2f,1.f), new Spectrum(.5f, .5f, .5f));
+		light = new PointLight(new Vector3f(-0.8f,0.2f,1.f), new Spectrum(1.5f, 1.5f, 1.5f));
 		lightList.add(light);		
 	}
 }

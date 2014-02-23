@@ -3,24 +3,17 @@ package rt.testscenes;
 import javax.vecmath.Matrix4f;
 import javax.vecmath.Vector3f;
 
-import rt.LightList;
-import rt.LightSource;
-import rt.Material;
-import rt.Scene;
-import rt.Spectrum;
+import rt.*;
 import rt.cameras.PinholeCamera;
 import rt.films.BoxFilterFilm;
 import rt.integrators.WhittedIntegratorFactory;
 import rt.intersectables.*;
-import rt.lightsources.PointLight;
-import rt.materials.Refractive;
+import rt.lightsources.*;
+import rt.materials.*;
 import rt.materials.XYZGrid;
 import rt.samplers.*;
 import rt.tonemappers.ClampTonemapper;
 
-/**
- * Test scene for CSG objects and refraction.
- */
 public class CSGScene extends Scene {
 	
 	public CSGScene()
@@ -33,7 +26,7 @@ public class CSGScene extends Scene {
 		height = 360;
 		
 		// Number of samples per pixel
-		SPP = 1;
+		SPP = 4;
 		
 		// Specify which camera, film, and tonemapper to use
 		Vector3f eye = new Vector3f(0.f, 0.f, 5.f);
@@ -47,13 +40,12 @@ public class CSGScene extends Scene {
 		
 		// Specify which integrator and sampler to use
 		integratorFactory = new WhittedIntegratorFactory();
-		samplerFactory = new OneSamplerFactory();		
+		samplerFactory = new UniformSamplerFactory();		
 		
 		Material refractive = new Refractive(1.3f);
 		
-		// Make a conical "bowl" by subtracting two cones
+		// Make a conical "bowl" by subtracting cross-sections of two cones
 		CSGSolid outerCone = coneCrossSection(60.f, refractive);
-
 		// Make an inner cone and subtract it
 		Matrix4f trafo = new Matrix4f();
 		trafo.setIdentity();
@@ -71,8 +63,18 @@ public class CSGScene extends Scene {
 		trans.mul(rot);		
 		doubleCone = new CSGInstance(doubleCone, trans);
 		
-		// Something like a"soap block"
-		CSGSolid soap = new CSGUnitCylinder();
+		// Something like a"soap bar"
+		Material yellow = new Diffuse(new Spectrum(1.f, 0.8f, 0.2f));
+		CSGSolid soap = new CSGUnitCylinder(yellow);
+		CSGSolid cap = new CSGTwoSidedInfiniteCone(yellow);
+		// Smoothen the edges
+		trans.setIdentity();
+		trans.m23 = -0.8f;
+		CSGSolid cap1 = new CSGInstance(cap, trans); 
+		soap = new CSGNode(soap, cap1, CSGNode.OperationType.INTERSECT);
+		trans.m23 = 1.8f;
+		CSGSolid cap2 = new CSGInstance(cap, trans); 
+		soap = new CSGNode(soap, cap2, CSGNode.OperationType.INTERSECT);
 		
 		// Transform it and place it in the scene
 		Matrix4f scale = new Matrix4f();
@@ -115,10 +117,10 @@ public class CSGScene extends Scene {
 		// Light sources
 		Vector3f lightPos = new Vector3f(eye);
 		lightPos.add(new Vector3f(-1.f, 0.f, 0.f));
-		LightSource pointLight1 = new PointLight(lightPos, new Spectrum(14.f, 14.f, 14.f));
+		LightGeometry pointLight1 = new PointLight(lightPos, new Spectrum(14.f, 14.f, 14.f));
 		lightPos.add(new Vector3f(2.f, 0.f, 0.f));
-		LightSource pointLight2 = new PointLight(lightPos, new Spectrum(14.f, 14.f, 14.f));
-		LightSource pointLight3 = new PointLight(new Vector3f(0.f, 5.f, 1.f), new Spectrum(24.f, 24.f, 24.f));
+		LightGeometry pointLight2 = new PointLight(lightPos, new Spectrum(14.f, 14.f, 14.f));
+		LightGeometry pointLight3 = new PointLight(new Vector3f(0.f, 5.f, 1.f), new Spectrum(24.f, 24.f, 24.f));
 		lightList = new LightList();
 		lightList.add(pointLight1);
 		lightList.add(pointLight2);

@@ -2,10 +2,7 @@ package rt.materials;
 
 import javax.vecmath.Vector3f;
 
-import rt.HitRecord;
-import rt.Material;
-import rt.Spectrum;
-import rt.Material.ShadingSample;
+import rt.*;
 
 /**
  * A basic diffuse material.
@@ -19,6 +16,7 @@ public class Diffuse implements Material {
 	 * which should be in the range [0,1], a value of 1 meaning all light
 	 * is reflected (diffusely), and none is absorbed. The diffuse BRDF
 	 * corresponding to {@param kd} is actually {@param kd}/pi.
+	 * 
 	 * @param kd
 	 */
 	public Diffuse(Spectrum kd)
@@ -26,6 +24,11 @@ public class Diffuse implements Material {
 		this.kd = new Spectrum(kd);
 		// Normalize
 		this.kd.mult(1/(float)Math.PI);
+	}
+	
+	public Diffuse()
+	{
+		this(new Spectrum(1.f, 1.f, 1.f));
 	}
 
 	/**
@@ -36,7 +39,7 @@ public class Diffuse implements Material {
 	 *  @param hitRecord hit record to be used
 	 */
 	public Spectrum evaluateBRDF(HitRecord hitRecord, Vector3f wOut, Vector3f wIn) {
-		return kd;
+		return new Spectrum(kd);
 	}
 
 	public boolean hasSpecularReflection()
@@ -58,10 +61,23 @@ public class Diffuse implements Material {
 		return null;
 	}
 	
-	// To be implemented!
+	// To be implemented for path tracer!
 	public ShadingSample getShadingSample(HitRecord hitRecord, float[] sample)
 	{
-		return null;
+		return null;	
+	}
+		
+	public boolean castsShadows()
+	{
+		return true;
+	}
+	
+	public Spectrum evaluateEmission(HitRecord hitRecord, Vector3f wOut) {
+		return new Spectrum(0.f, 0.f, 0.f);
+	}
+
+	public ShadingSample getEmissionSample(HitRecord hitRecord, float[] sample) {
+		return new ShadingSample();
 	}
 	
 }

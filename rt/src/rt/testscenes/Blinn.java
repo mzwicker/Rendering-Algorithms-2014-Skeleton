@@ -39,7 +39,7 @@ public class Blinn extends Scene {
 		tonemapper = new ClampTonemapper();
 		
 		// Specify which integrator and sampler to use
-		integratorFactory = new WhittedIntegratorFactory();
+		integratorFactory = new PointLightIntegratorFactory();
 		samplerFactory = new OneSamplerFactory();
 
 		// Ground plane
@@ -56,8 +56,8 @@ public class Blinn extends Scene {
 		root = intersectableList;
 		
 		// Light sources
-		LightSource pl1 = new PointLight(new Vector3f(.5f, .5f, 2.f), new Spectrum(1.f, 1.f, 1.f));
-		LightSource pl2 = new PointLight(new Vector3f(-.75f, .75f, 2.f), new Spectrum(1.f, 1.f, 1.f));
+		LightGeometry pl1 = new PointLight(new Vector3f(.5f, .5f, 2.f), new Spectrum(1.f, 1.f, 1.f));
+		LightGeometry pl2 = new PointLight(new Vector3f(-.75f, .75f, 2.f), new Spectrum(1.f, 1.f, 1.f));
 		lightList = new LightList();
 		lightList.add(pl1);
 		lightList.add(pl2);
