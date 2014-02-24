@@ -17,7 +17,7 @@ public class Diffuse implements Material {
 	 * is reflected (diffusely), and none is absorbed. The diffuse BRDF
 	 * corresponding to {@param kd} is actually {@param kd}/pi.
 	 * 
-	 * @param kd
+	 * @param kd the diffuse reflectance
 	 */
 	public Diffuse(Spectrum kd)
 	{
@@ -26,6 +26,9 @@ public class Diffuse implements Material {
 		this.kd.mult(1/(float)Math.PI);
 	}
 	
+	/**
+	 * Default diffuse material with reflectance (1,1,1).
+	 */
 	public Diffuse()
 	{
 		this(new Spectrum(1.f, 1.f, 1.f));

@@ -1,4 +1,4 @@
 /**
- * Implementations of the {@link rt.LightSource} interface. 
+ * Implementations of the {@link rt.LightGeometry} interface. 
  */
 package rt.lightsources;
