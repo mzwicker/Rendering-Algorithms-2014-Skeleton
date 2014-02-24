@@ -48,8 +48,9 @@ public class PointLightIntegrator implements Integrator {
 			{
 				LightGeometry lightSource = it.next();
 				
-				// Make direction from hit point to light source position				
-				HitRecord lightHit = lightSource.sample(null);
+				// Make direction from hit point to light source position; this is only supposed to work with point lights
+				float dummySample[] = new float[2];
+				HitRecord lightHit = lightSource.sample(dummySample);
 				Vector3f lightDir = StaticVecmath.sub(lightHit.position, hitRecord.position);
 				float d = lightDir.length();
 				lightDir.normalize();
@@ -61,9 +62,7 @@ public class PointLightIntegrator implements Integrator {
 				Spectrum s = new Spectrum(brdfValue);
 				
 				// Multiply with emission
-				Vector3f lightDirInv = new Vector3f(lightDir);
-				lightDirInv.negate();				
-				s.mult(lightHit.material.evaluateEmission(lightHit, lightDirInv));
+				s.mult(lightHit.material.evaluateEmission(lightHit, StaticVecmath.negate(lightDir)));
 				
 				// Multiply with cosine of surface normal and incident direction
 				float ndotl = hitRecord.normal.dot(lightDir);
