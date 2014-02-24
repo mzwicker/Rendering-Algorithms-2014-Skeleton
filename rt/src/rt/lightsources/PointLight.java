@@ -5,6 +5,9 @@ import javax.vecmath.Vector3f;
 import rt.*;
 import rt.materials.PointLightMaterial;
 
+/**
+ * Implements a point light using a {@link rt.materials.PointLightMaterial}.
+ */
 public class PointLight implements LightGeometry {
 
 	Vector3f position;
