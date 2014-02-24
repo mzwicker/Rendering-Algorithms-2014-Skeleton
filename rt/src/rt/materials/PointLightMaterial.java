@@ -8,6 +8,9 @@ import rt.HitRecord;
 import rt.Material;
 import rt.Spectrum;
 
+/**
+ * This material should be used with {@link rt.lightsources.PointLight}.
+ */
 public class PointLightMaterial implements Material {
 
 	Spectrum emission;
