@@ -19,7 +19,7 @@ public class CSGScene extends Scene {
 	public CSGScene()
 	{
 		// Output file name
-		outputFilename = new String("..//output//testscenes//CSGScene");
+		outputFilename = new String("../output/testscenes/CSGScene");
 		
 		// Image width and height in pixels
 		width = 640;
