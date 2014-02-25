@@ -14,9 +14,9 @@ import rt.tonemappers.*;
 /**
  * Test scene for pinhole camera specifications.
  */
-public class Camera extends Scene {
+public class CameraTestScene extends Scene {
 
-	public Camera()
+	public CameraTestScene()
 	{
 		// Output file name
 		outputFilename = new String("../output/testscenes/Camera");
