@@ -3,7 +3,6 @@ package rt;
 import javax.imageio.ImageIO;
 
 import rt.basicscenes.*;
-
 import java.util.*;
 import java.awt.image.*;
 import java.io.*;
@@ -84,15 +83,15 @@ public class Main {
 
 						// For all samples of the pixel
 						for(int k=0; k<samples.length; k++)
-						{							
+						{	
 							// Make ray
-							Ray r = task.scene.getCamera().makeWorldSpaceRay(i, j, samples[k]);					
-							
+							Ray r = task.scene.getCamera().makeWorldSpaceRay(i, j, samples[k]);
+
 							// Evaluate ray
 							Spectrum s = task.integrator.integrate(r);							
 							
 							// Write to film
-							task.scene.getFilm().addSample((double)i+(double)samples[k][0], (double)j+(double)samples[k][1], s);											
+							task.scene.getFilm().addSample((double)i+(double)samples[k][0], (double)j+(double)samples[k][1], s);
 						}
 					}
 				}
@@ -108,9 +107,8 @@ public class Main {
 	
 	public static void main(String[] args)
 	{			
-		int taskSize = 32;	// Each task renders a square image block of this size
+		int taskSize = 4;	// Each task renders a square image block of this size
 		int nThreads = 8;	// Number of threads to be used for rendering
-				
 		int width = scene.getFilm().getWidth();
 		int height = scene.getFilm().getHeight();
 
@@ -120,9 +118,9 @@ public class Main {
 		int nTasks = (int)Math.ceil((double)width/(double)taskSize) * (int)Math.ceil((double)height/(double)taskSize);
 		tasksLeft = new Counter(nTasks);
 		queue = new LinkedList<RenderTask>();
-		for(int i=0; i<(int)Math.ceil((double)height/(double)taskSize); i++)
+		for(int j=0; j<(int)Math.ceil((double)height/(double)taskSize); j++)
 		{
-			for(int j=0; j<(int)Math.ceil((double)width/(double)taskSize); j++)
+			for(int i=0; i<(int)Math.ceil((double)width/(double)taskSize); i++)
 			{
 				RenderTask task = new RenderTask(scene, i*taskSize, Math.min((i+1)*taskSize,width), j*taskSize, Math.min((j+1)*taskSize,height));
 				queue.add(task);
