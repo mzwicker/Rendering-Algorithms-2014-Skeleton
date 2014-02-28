@@ -4,27 +4,23 @@ import javax.vecmath.Matrix4f;
 import javax.vecmath.Vector3f;
 
 import rt.*;
+import rt.cameras.*;
 import rt.films.*;
 import rt.integrators.*;
 import rt.intersectables.*;
 import rt.samplers.*;
 import rt.tonemappers.*;
-import rt.cameras.*;
 
-/**
- * Test for instancing functionality. Note: the spheres look strange (elliptical) and
- * it looks like they intersect a bit because of perspective projection!
- */
-public class InstancingTest extends Scene {
+public class TriangleTest extends Scene {
 
-	public InstancingTest()
+	public TriangleTest()
 	{
 		// Output file name
-		outputFilename = new String("../output/testscenes/InstancingTest");
+		outputFilename = new String("../output/testscenes/TriangleTest");
 		
 		// Image width and height in pixels
-		width = 1280;
-		height = 720;
+		width = 512;
+		height = 512;
 		
 		// Number of samples per pixel
 		SPP = 1;
@@ -43,23 +39,19 @@ public class InstancingTest extends Scene {
 		integratorFactory = new DebugIntegratorFactory();
 		samplerFactory = new OneSamplerFactory();
 			
-		// Make sphere and instances; the default sphere is a unit sphere
-		// placed at the origin
-		Sphere sphere = new Sphere();
+		// Make a triangle. Note: convention is that vertex order is counter
+		// clockwise when triangle is seen from outside (outside is by convention
+		// the direction the normal points into).
+		float[] vertices = {0.f, 0.f, 0.f, 1.f, 0.f, 0.f, 0.f, 1.f, 0.f};
+		float[] normals = {0.f, 0.f, 1.f, 0.f, 0.f, 1.f, 0.f, 0.f, 1.f};
+		int[] indices = {0, 1, 2};
 		
-		Matrix4f translation = new Matrix4f();
-		translation.setIdentity();
-		translation.setTranslation(new Vector3f(2.0f, 0.f, 0.f));
-		Instance sphere2 = new Instance(sphere, translation);
+		Mesh mesh = new Mesh(vertices, normals, indices);
 		
-		translation.setTranslation(new Vector3f(-2.0f, 0.f, 0.f));
-		Instance sphere3 = new Instance(sphere, translation);
-				
 		IntersectableList intersectableList = new IntersectableList();
-		intersectableList.add(sphere);
-		intersectableList.add(sphere2);
-		intersectableList.add(sphere3);
+		intersectableList.add(mesh);
 		
 		root = intersectableList;
 	}
+
 }

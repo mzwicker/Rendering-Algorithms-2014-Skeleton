@@ -20,14 +20,14 @@ import org.omg.CORBA.TRANSACTION_MODE;
 /**
  * Test scene for instancing and rendering triangle meshes.
  */
-public class Instancing extends Scene {
+public class InstancingTeapots extends Scene {
 
 	public IntersectableList objects;
 
 	/**
 	 * Timing: 8.5 sec on 12 core Xeon 2.5GHz, 24 threads
 	 */
-	public Instancing()
+	public InstancingTeapots()
 	{	
 		outputFilename = new String("../output/testscenes/Instancing");
 		
