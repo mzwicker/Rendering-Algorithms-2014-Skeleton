@@ -6,11 +6,10 @@ import javax.vecmath.Vector3f;
 import rt.*;
 import rt.cameras.PinholeCamera;
 import rt.films.BoxFilterFilm;
-import rt.integrators.WhittedIntegratorFactory;
+import rt.integrators.*;
 import rt.intersectables.*;
 import rt.lightsources.*;
 import rt.materials.*;
-import rt.materials.XYZGrid;
 import rt.samplers.*;
 import rt.tonemappers.ClampTonemapper;
 
@@ -19,15 +18,22 @@ public class CSGScene extends Scene {
 	public CSGScene()
 	{
 		// Output file name
-		outputFilename = new String("../output/testscenes/CSGScene");
-		
+		outputFilename = new String("..//output//testscenes//CSGScene Whitted");
+
 		// Image width and height in pixels
 		width = 640;
 		height = 360;
 		
+		// Specify pixel sampler to be used
+		samplerFactory = new RandomSamplerFactory();
+	
 		// Number of samples per pixel
-		SPP = 4;
-		
+		SPP = 32;
+
+		outputFilename = outputFilename + " " + String.format("%d", SPP) + "SPP";
+		outputFilename = outputFilename + " " + String.format("%d", width) + "x";
+		outputFilename = outputFilename + String.format("%d", height);
+
 		// Specify which camera, film, and tonemapper to use
 		Vector3f eye = new Vector3f(0.f, 0.f, 5.f);
 		Vector3f lookAt = new Vector3f(0.f, -.5f, 0.f);
@@ -40,7 +46,8 @@ public class CSGScene extends Scene {
 		
 		// Specify which integrator and sampler to use
 		integratorFactory = new WhittedIntegratorFactory();
-		samplerFactory = new UniformSamplerFactory();		
+//		integratorFactory = new BDPathTracingIntegratorFactory(this);
+//		integratorFactory = new PathTracingIntegratorFactory();
 		
 		Material refractive = new Refractive(1.3f);
 		
@@ -120,7 +127,7 @@ public class CSGScene extends Scene {
 		LightGeometry pointLight1 = new PointLight(lightPos, new Spectrum(14.f, 14.f, 14.f));
 		lightPos.add(new Vector3f(2.f, 0.f, 0.f));
 		LightGeometry pointLight2 = new PointLight(lightPos, new Spectrum(14.f, 14.f, 14.f));
-		LightGeometry pointLight3 = new PointLight(new Vector3f(0.f, 5.f, 1.f), new Spectrum(24.f, 24.f, 24.f));
+		LightGeometry pointLight3 = new PointLight(new Vector3f(0.f, 3.f, 1.f), new Spectrum(44.f, 44.f, 44.f));
 		lightList = new LightList();
 		lightList.add(pointLight1);
 		lightList.add(pointLight2);
@@ -156,4 +163,14 @@ public class CSGScene extends Scene {
 		
 		return out;
 	}
+	
+	public void finish()
+	{
+		if(integratorFactory instanceof BDPathTracingIntegratorFactory)
+		{
+			((BDPathTracingIntegratorFactory)integratorFactory).writeLightImage("../output/testscenes/lightimage");
+			((BDPathTracingIntegratorFactory)integratorFactory).addLightImage(film);
+		}
+	}
+
 }
