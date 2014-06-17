@@ -6,6 +6,8 @@ import rt.basicscenes.*;
 
 import java.util.*;
 import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Future;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 import java.awt.image.*;
@@ -22,9 +24,6 @@ public class Main {
 	 * The scene to be rendered.
 	 */
 	public static Scene scene = new Dodecahedron();
-
-	static LinkedList<RenderTask> queue;
-
 	/**
 	 * A render task represents a rectangular image region that is rendered
 	 * by a thread in one chunk.
@@ -75,7 +74,7 @@ public class Main {
 		}
 	}
 	
-	public static void main(String[] args)
+	public static void main(String[] args) throws InterruptedException, ExecutionException, FileNotFoundException, UnsupportedEncodingException
 	{			
 		int taskSize = 4;	// Each task renders a square image block of this size
 		int nThreads = Runtime.getRuntime().availableProcessors();	// Number of threads to be used for rendering
@@ -88,29 +87,28 @@ public class Main {
 		//ExecutorService executor = java.util.concurrent.Executors.newFixedThreadPool(nThreads);
 		ThreadPoolExecutor executor = new ThreadPoolExecutor(nThreads, nThreads, 60, TimeUnit.SECONDS, new ArrayBlockingQueue<Runnable>(nTasks) );
 		// Make render tasks, split image into blocks to be rendered by the tasks
+		
+		Timer timer = new Timer();
+		timer.reset();
+
+		ArrayList<Future<?>> futures = new ArrayList<>(nTasks);
 		for(int j=0; j < Math.ceil(height/(float)taskSize); j++) {
 			for(int i=0; i < Math.ceil(width/(float)taskSize); i++) {
 				RenderTask task = new RenderTask(scene, i*taskSize, Math.min((i+1)*taskSize, width), j*taskSize, 
 																	Math.min((j+1)*taskSize, height));
-				executor.execute(task);
+				futures.add(executor.submit(task));
 			}
 		}
-		Timer timer = new Timer();
-		timer.reset();
 		
 		
 		// Wait for threads to end
 		System.out.printf("Rendering scene %s to file %s: \n", scene.getClass().toString(), scene.outputFilename);
-		System.out.println("0%                                                50%                                           100%");
-		System.out.println("|---------|---------|---------|---------|---------|---------|---------|---------|---------|--------|");
+		System.out.printf("0%%                                                50%%                                           100%%\n");
+		System.out.printf("|---------|---------|---------|---------|---------|---------|---------|---------|---------|---------\n");
 		executor.shutdown();
 		int printed = 0;
-		while (!executor.isTerminated()) {
-			try {
-				Thread.sleep(500);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
+		for (Future<?> f: futures) {
+			f.get();
 			int toPrint = (int) (executor.getCompletedTaskCount()/(float)executor.getTaskCount()*100);
 			for (; printed < toPrint; printed++) {
 				System.out.print("*");
