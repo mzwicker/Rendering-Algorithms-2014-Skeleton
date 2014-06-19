@@ -103,8 +103,8 @@ public class Main {
 		
 		// Wait for threads to end
 		System.out.printf("Rendering scene %s to file %s: \n", scene.getClass().toString(), scene.outputFilename);
-		System.out.printf("0%%                                                50%%                                           100%%\n");
-		System.out.printf("|---------|---------|---------|---------|---------|---------|---------|---------|---------|---------\n");
+		System.out.println("0%                                                50%                                           100%");
+		System.out.println("|---------|---------|---------|---------|---------|---------|---------|---------|---------|--------|");
 		executor.shutdown();
 		int printed = 0;
 		for (Future<?> f: futures) {
