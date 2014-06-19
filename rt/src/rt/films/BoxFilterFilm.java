@@ -40,7 +40,7 @@ public class BoxFilterFilm implements Film {
 			int idx_x = (int)x;
 			int idx_y = (int)y;
 			unnormalized[idx_x][idx_y].add(s);
-			nSamples[idx_x][idx_x]++;
+			nSamples[idx_x][idx_y]++;
 		}
 	}
 	
