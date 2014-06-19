@@ -37,50 +37,45 @@ public class PointLightIntegrator implements Integrator {
 	public Spectrum integrate(Ray r) {
 
 		HitRecord hitRecord = root.intersect(r);
-		if(hitRecord != null)
-		{
-			Spectrum outgoing = new Spectrum(0.f, 0.f, 0.f);
-			Spectrum brdfValue;
+		// immediately return background color if nothing was hit
+		if(hitRecord == null) { 
+			return new Spectrum(0,0,0);
+		}	
+		Spectrum outgoing = new Spectrum(0.f, 0.f, 0.f);	
+		// Iterate over all light sources
+		Iterator<LightGeometry> it = lightList.iterator();
+		while(it.hasNext()) {
+			LightGeometry lightSource = it.next();
 			
-			// Iterate over all light sources
-			Iterator<LightGeometry> it = lightList.iterator();
-			while(it.hasNext())
-			{
-				LightGeometry lightSource = it.next();
-				
-				// Make direction from hit point to light source position; this is only supposed to work with point lights
-				float dummySample[] = new float[2];
-				HitRecord lightHit = lightSource.sample(dummySample);
-				Vector3f lightDir = StaticVecmath.sub(lightHit.position, hitRecord.position);
-				float d = lightDir.length();
-				lightDir.normalize();
-				
-				// Evaluate the BRDF
-				brdfValue = hitRecord.material.evaluateBRDF(hitRecord, hitRecord.w, lightDir);
-				
-				// Multiply together factors relevant for shading, that is, brdf * emission * ndotl * geometry term
-				Spectrum s = new Spectrum(brdfValue);
-				
-				// Multiply with emission
-				s.mult(lightHit.material.evaluateEmission(lightHit, StaticVecmath.negate(lightDir)));
-				
-				// Multiply with cosine of surface normal and incident direction
-				float ndotl = hitRecord.normal.dot(lightDir);
-				ndotl = Math.max(ndotl, 0.f);
-				s.mult(ndotl);
-				
-				// Geometry term: multiply with 1/(squared distance), only correct like this 
-				// for point lights (not area lights)!
-				s.mult(1.f/(d*d));
-				
-				// Accumulate
-				outgoing.add(s);
-			}
+			// Make direction from hit point to light source position; this is only supposed to work with point lights
+			float dummySample[] = new float[2];
+			HitRecord lightHit = lightSource.sample(dummySample);
+			Vector3f lightDir = StaticVecmath.sub(lightHit.position, hitRecord.position);
+			float d2 = lightDir.lengthSquared();
+			lightDir.normalize();
 			
-			return outgoing;
-		} else 
-			return new Spectrum(0.f,0.f,0.f);
-		
+			// Evaluate the BRDF
+			Spectrum brdfValue = hitRecord.material.evaluateBRDF(hitRecord, hitRecord.w, lightDir);
+			
+			// Multiply together factors relevant for shading, that is, brdf * emission * ndotl * geometry term
+			Spectrum s = new Spectrum(brdfValue);
+			
+			// Multiply with emission
+			s.mult(lightHit.material.evaluateEmission(lightHit, StaticVecmath.negate(lightDir)));
+			
+			// Multiply with cosine of surface normal and incident direction
+			float ndotl = hitRecord.normal.dot(lightDir);
+			ndotl = Math.max(ndotl, 0.f);
+			s.mult(ndotl);
+			
+			// Geometry term: multiply with 1/(squared distance), only correct like this 
+			// for point lights (not area lights)!
+			s.mult(1.f/d2);
+			
+			// Accumulate
+			outgoing.add(s);
+		}
+		return outgoing;	
 	}
 
 	public float[][] makePixelSamples(Sampler sampler, int n) {
