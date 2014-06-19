@@ -24,4 +24,11 @@ public class StaticVecmath {
 		r.negate();
 		return r;
 	}
+	
+	public static Matrix4f invert(Matrix4f m)
+	{
+		Matrix4f r = new Matrix4f(m);
+		r.invert();
+		return r;
+	}
 }
