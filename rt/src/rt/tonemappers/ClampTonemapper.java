@@ -21,12 +21,13 @@ public class ClampTonemapper implements Tonemapper {
 	{
 		BufferedImage img = new BufferedImage(film.getWidth(), film.getHeight(), BufferedImage.TYPE_3BYTE_BGR);
 		
+		Spectrum[][] filmImg = film.getImage();
 		for(int i=0; i<film.getWidth(); i++)
 		{
 			for(int j=0; j<film.getHeight(); j++)
 			{
 				// Clamping
-				Spectrum s = film.getImage()[i][j];
+				Spectrum s = filmImg[i][j];
 				s.clamp(0,1);
 				img.setRGB(i, film.getHeight()-1-j, ((int)(255.f*s.r) << 16) | ((int)(255.f*s.g) << 8) | ((int)(255.f*s.b)));
 			}

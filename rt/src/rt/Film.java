@@ -19,8 +19,7 @@ public interface Film {
 	public void addSample(double x, double y, Spectrum s);
 	
 	/**
-	 * Returns the image stored in the film.
-	 * 
+	 * Computes and returns the image stored in the film.
 	 * @return the image
 	 */
 	public Spectrum[][] getImage();
