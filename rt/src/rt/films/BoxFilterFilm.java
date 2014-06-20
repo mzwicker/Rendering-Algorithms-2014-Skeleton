@@ -29,7 +29,6 @@ public class BoxFilterFilm implements Film {
 			{
 				image[i][j] = new Spectrum();
 				unnormalized[i][j] = new Spectrum();
-				nSamples[i][j] = 0.f;
 			}
 		}
 	}
@@ -38,13 +37,10 @@ public class BoxFilterFilm implements Film {
 	{
 		if((int)x>=0 && (int)x<width && (int)y>=0 && (int)y<height)
 		{
-			unnormalized[(int)x][(int)y].r += s.r;
-			unnormalized[(int)x][(int)y].g += s.g;
-			unnormalized[(int)x][(int)y].b += s.b;
-			nSamples[(int)x][(int)y]++;
-			image[(int)x][(int)y].r = unnormalized[(int)x][(int)y].r/nSamples[(int)x][(int)y];
-			image[(int)x][(int)y].g = unnormalized[(int)x][(int)y].g/nSamples[(int)x][(int)y];
-			image[(int)x][(int)y].b = unnormalized[(int)x][(int)y].b/nSamples[(int)x][(int)y];
+			int idx_x = (int)x;
+			int idx_y = (int)y;
+			unnormalized[idx_x][idx_y].add(s);
+			nSamples[idx_x][idx_y]++;
 		}
 	}
 	
@@ -60,6 +56,15 @@ public class BoxFilterFilm implements Film {
 	
 	public Spectrum[][] getImage()
 	{
+		for(int i=0; i<width; i++)
+		{
+			for(int j=0; j<height; j++)
+			{
+				image[i][j].r = unnormalized[i][j].r/nSamples[i][j];
+				image[i][j].g = unnormalized[i][j].g/nSamples[i][j];
+				image[i][j].b = unnormalized[i][j].b/nSamples[i][j];
+			}
+		}
 		return image;
 	}
 }
