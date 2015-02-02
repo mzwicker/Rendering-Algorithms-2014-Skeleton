@@ -175,27 +175,28 @@ public class ObjReader {
 				indices[vertexNr] = vertexNr;
 				vertexNr++;
 			}
-
-			Vector3f edge0 = new Vector3f(verticesFinal[(vertexNr - 1) * 3]
-					- verticesFinal[(vertexNr - 3) * 3],
-					verticesFinal[(vertexNr - 1) * 3 + 1]
-							- verticesFinal[(vertexNr - 3) * 3 + 1],
-					verticesFinal[(vertexNr - 1) * 3 + 2]
-							- verticesFinal[(vertexNr - 3) * 3 + 2]);
-			Vector3f edge1 = new Vector3f(verticesFinal[(vertexNr - 2) * 3]
-					- verticesFinal[(vertexNr - 3) * 3],
-					verticesFinal[(vertexNr - 2) * 3 + 1]
-							- verticesFinal[(vertexNr - 3) * 3 + 1],
-					verticesFinal[(vertexNr - 2) * 3 + 2]
-							- verticesFinal[(vertexNr - 3) * 3 + 2]);
-			Vector3f n = new Vector3f();
-			n.cross(edge1, edge0);
-			n.normalize();
-			for (int j = 0; j < 3; j++) {
-				int normalIdx = (vertexNr - (j + 1)) * 3;
-				normalsFinal[normalIdx + 0] = n.x;
-				normalsFinal[normalIdx + 1] = n.y;
-				normalsFinal[normalIdx + 2] = n.z;
+			if (!hasNormals) {
+				Vector3f edge0 = new Vector3f(verticesFinal[(vertexNr - 1) * 3]
+						- verticesFinal[(vertexNr - 3) * 3],
+						verticesFinal[(vertexNr - 1) * 3 + 1]
+								- verticesFinal[(vertexNr - 3) * 3 + 1],
+						verticesFinal[(vertexNr - 1) * 3 + 2]
+								- verticesFinal[(vertexNr - 3) * 3 + 2]);
+				Vector3f edge1 = new Vector3f(verticesFinal[(vertexNr - 2) * 3]
+						- verticesFinal[(vertexNr - 3) * 3],
+						verticesFinal[(vertexNr - 2) * 3 + 1]
+								- verticesFinal[(vertexNr - 3) * 3 + 1],
+						verticesFinal[(vertexNr - 2) * 3 + 2]
+								- verticesFinal[(vertexNr - 3) * 3 + 2]);
+				Vector3f n = new Vector3f();
+				n.cross(edge1, edge0);
+				n.normalize();
+				for (int j = 0; j < 3; j++) {
+					int normalIdx = (vertexNr - (j + 1)) * 3;
+					normalsFinal[normalIdx + 0] = n.x;
+					normalsFinal[normalIdx + 1] = n.y;
+					normalsFinal[normalIdx + 2] = n.z;
+				}
 			}
 		}
 		return new Mesh(verticesFinal, normalsFinal, texCoordsFinal, indices);
