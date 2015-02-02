@@ -1,5 +1,6 @@
 package rt.intersectables;
 
+import javax.vecmath.Point3f;
 import javax.vecmath.Vector3f;
 
 import rt.HitRecord;
@@ -104,8 +105,7 @@ public class CSGPlane extends CSGSolid {
 			float t = -(normal.dot(new Vector3f(r.origin)) + d) / tmp;
 		
 			// Hit position
-			Vector3f position = new Vector3f(r.direction);
-			position.scaleAdd(t, r.origin);
+			Point3f position = r.pointAt(t);
 			
 			// Hit normal
 			Vector3f retNormal = new Vector3f(normal);
