@@ -101,7 +101,7 @@ public class CSGPlane extends CSGSolid {
 		if(tmp!=0)
 		{
 			// t parameter of hit point
-			float t = -(normal.dot(r.origin) + d) / tmp;
+			float t = -(normal.dot(new Vector3f(r.origin)) + d) / tmp;
 		
 			// Hit position
 			Vector3f position = new Vector3f(r.direction);
