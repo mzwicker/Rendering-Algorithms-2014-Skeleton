@@ -27,7 +27,7 @@ public class DummyCamera implements Camera {
 	public Ray makeWorldSpaceRay(int i, int j, float sample[]) {
 		float x = ((float)i+sample[0]) / (float)width;
 		float y = ((float)j+sample[1]) / (float)height;
-		return new Ray(new Vector3f(0.f,0.f,0.f), new Vector3f(x, y, 1.f));
+		return new Ray(new Point3f(0.f,0.f,0.f), new Vector3f(x, y, 1.f));
 	}
 
 }

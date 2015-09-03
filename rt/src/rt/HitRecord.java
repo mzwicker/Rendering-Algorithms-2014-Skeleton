@@ -11,7 +11,7 @@ public class HitRecord  {
 	/**
 	 * Hit position.
 	 */
-	public Vector3f position;
+	public Point3f position;
 	
 	/**
 	 * Normal at hit point.
@@ -61,7 +61,7 @@ public class HitRecord  {
 		// do nothing
 	}
 	
-	public HitRecord(float t, Vector3f position, Vector3f normal, Vector3f w, Intersectable intersectable, Material material, float u, float v)
+	public HitRecord(float t, Point3f position, Vector3f normal, Vector3f w, Intersectable intersectable, Material material, float u, float v)
 	{
 		this.t = t;
 		this.position = position;

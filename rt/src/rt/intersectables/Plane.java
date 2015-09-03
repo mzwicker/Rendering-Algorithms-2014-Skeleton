@@ -41,11 +41,10 @@ public class Plane implements Intersectable {
 		float tmp = normal.dot(r.direction);
 
 		if (tmp != 0) {
-			float t = -(normal.dot(r.origin) + d) / tmp;
+			float t = -(normal.dot(new Vector3f(r.origin)) + d) / tmp;
 			if (t <= 0)
 				return null;
-			Vector3f position = new Vector3f(r.direction);
-			position.scaleAdd(t, r.origin);
+			Point3f position = r.pointAt(t);
 			Vector3f retNormal = new Vector3f(normal);
 			// wIn is incident direction; convention is that it points away from
 			// surface
