@@ -46,7 +46,10 @@ public class Blinn extends Scene {
 		CSGPlane groundPlane = new CSGPlane(new Vector3f(0.f, 1.f, 0.f), 1.f);
 		
 		// Sphere with Blinn material
+		// Sphere is a unit sphere at the origin
 		Sphere sphere = new Sphere();
+		// The Blinn material expects the diffuse and specular reflection coefficients, and the shininess 
+		// exponent as its parameters
 		sphere.material = new rt.materials.Blinn(new Spectrum(.8f, 0.f, 0.f), new Spectrum(.4f, .4f, .4f), 50.f);
 		
 		IntersectableList intersectableList = new IntersectableList();

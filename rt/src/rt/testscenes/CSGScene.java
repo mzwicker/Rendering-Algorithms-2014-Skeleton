@@ -13,6 +13,9 @@ import rt.materials.*;
 import rt.samplers.*;
 import rt.tonemappers.ClampTonemapper;
 
+/**
+ * A more advanced CSG scene with cones and refractive objects.
+ */
 public class CSGScene extends Scene {
 	
 	public CSGScene()

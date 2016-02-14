@@ -11,6 +11,9 @@ import rt.intersectables.*;
 import rt.samplers.*;
 import rt.tonemappers.*;
 
+/**
+ * Test scene for triangle meshes and triangle intersection.
+ */
 public class TriangleTest extends Scene {
 
 	public TriangleTest()

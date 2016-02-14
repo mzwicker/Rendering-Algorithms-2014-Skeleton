@@ -18,7 +18,7 @@ import javax.vecmath.Vector3f;
 import org.omg.CORBA.TRANSACTION_MODE;
 
 /**
- * Test scene for instancing and rendering triangle meshes.
+ * Test scene for instancing and rendering triangle meshes using the teapot model.
  */
 public class InstancingTeapots extends Scene {
 
@@ -29,7 +29,7 @@ public class InstancingTeapots extends Scene {
 	 */
 	public InstancingTeapots()
 	{	
-		outputFilename = new String("../output/testscenes/Instancing");
+		outputFilename = new String("../output/testscenes/InstancingTeapots");
 		
 		// Specify integrator to be used
 		integratorFactory = new PointLightIntegratorFactory();
