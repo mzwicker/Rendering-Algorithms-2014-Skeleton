@@ -14,9 +14,9 @@ import rt.tonemappers.*;
 /**
  * Simple scene using a Blinn material.
  */
-public class Blinn extends Scene {
+public class BlinnSphere extends Scene {
 
-	public Blinn()
+	public BlinnSphere()
 	{
 		// Output file name
 		outputFilename = new String("../output/testscenes/Blinn");
@@ -50,7 +50,7 @@ public class Blinn extends Scene {
 		Sphere sphere = new Sphere();
 		// The Blinn material expects the diffuse and specular reflection coefficients, and the shininess 
 		// exponent as its parameters
-		sphere.material = new rt.materials.Blinn(new Spectrum(.8f, 0.f, 0.f), new Spectrum(.4f, .4f, .4f), 50.f);
+		sphere.material = new rt.materials.BlinnSphere(new Spectrum(.8f, 0.f, 0.f), new Spectrum(.4f, .4f, .4f), 50.f);
 		
 		IntersectableList intersectableList = new IntersectableList();
 		intersectableList.add(groundPlane);

@@ -1,14 +1,14 @@
 package rt.testscenes;
 
 import rt.*;
-import rt.cameras.FixedCamera;
 import rt.cameras.*;
-import rt.films.BoxFilterFilm;
+import rt.films.*;
 import rt.integrators.*;
 import rt.intersectables.*;
 import rt.lightsources.*;
-import rt.samplers.OneSamplerFactory;
-import rt.tonemappers.ClampTonemapper;
+import rt.materials.*;
+import rt.samplers.*;
+import rt.tonemappers.*;
 
 import javax.vecmath.*;
 
@@ -81,6 +81,7 @@ public class CSGCylindersAndSpheres extends Scene {
 		
 		// Ground plane
 		Plane plane = new Plane(new Vector3f(0.f, 1.f, 0.f), 2.2f);
+		plane.material = new XYZGrid(new Spectrum(1.f,0.f,0.f), new Spectrum(1.f, 1.f, 1.f), 0.1f);
 		
 		// Add objects to scene
 		IntersectableList sceneObjects = new IntersectableList();
