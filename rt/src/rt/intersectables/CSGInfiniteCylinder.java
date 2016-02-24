@@ -2,11 +2,16 @@ package rt.intersectables;
 
 import java.util.ArrayList;
 import javax.vecmath.*;
-import rt.*;
-import rt.materials.*;
+
+import rt.HitRecord;
+import rt.Intersectable;
+import rt.Material;
+import rt.Spectrum;
+import rt.Ray;
+import rt.materials.Diffuse;
 
 /**
- * An infinite, open cylinder.
+ * An infinite, open cylinder that supports CSG operations.
  */
 public class CSGInfiniteCylinder extends CSGSolid {
 
@@ -81,8 +86,8 @@ public class CSGInfiniteCylinder extends CSGSolid {
 		Vector3f normal = new Vector3f(position);
 		normal.z = 0.f;
 		normal.normalize();
-		
-		HitRecord hitRecord = new HitRecord(t0, position, normal, wIn, null, material, 0.f, 0.f);
+
+		HitRecord hitRecord = new HitRecord(t0, new Point3f(position), normal, wIn, null, material, 0.f, 0.f);
 
 		// Add interval boundary to list
 		IntervalBoundary b1, b2;
@@ -103,7 +108,7 @@ public class CSGInfiniteCylinder extends CSGSolid {
 		normal.z = 0.f;
 		normal.normalize();
 
-		hitRecord = new HitRecord(t1, position, normal, wIn, null, material, 0.f, 0.f);
+		hitRecord = new HitRecord(t1, new Point3f(position), normal, wIn, null, material, 0.f, 0.f);
 
 		// Add interval boundary to list
 		b2 = new IntervalBoundary();

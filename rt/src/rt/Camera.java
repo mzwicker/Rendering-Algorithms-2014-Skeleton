@@ -11,7 +11,8 @@ public interface Camera {
 	 * to the camera specifications. The method receives a sample that 
 	 * the camera can use to generate the ray. Typically the first two
 	 * sample dimensions are used to sample a location in the current 
-	 * pixel. The samples are assumed to be in the range [0,1].
+	 * pixel. The samples are assumed to be in the range [0,1]. The pixel
+	 * center is at (0.5, 0.5).
 	 * 
 	 * @param i pixel column index
 	 * @param j pixel row index

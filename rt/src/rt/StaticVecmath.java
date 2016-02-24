@@ -2,6 +2,9 @@ package rt;
 
 import javax.vecmath.*;
 
+/**
+ * Static utility functions to make it easier to work with the vecmath package.
+ */
 public class StaticVecmath {
 
 	public static float dist2(Tuple3f v1, Tuple3f v2)
