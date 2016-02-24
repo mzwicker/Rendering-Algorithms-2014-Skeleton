@@ -13,7 +13,7 @@ import rt.tonemappers.*;
 import javax.vecmath.*;
 
 /**
- * Test scene for CSG cylinders and spheres.
+ * Test scene for recursive integrator with mirror spheres.
  */
 public class MirrorSpheres extends Scene {
 		
